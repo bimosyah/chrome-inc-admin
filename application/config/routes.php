@@ -54,5 +54,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['dashboard'] = 'C_dashboard';
+
 $route['barang'] = 'C_barang';
 $route['barang/insert'] = 'C_barang/insert';
+
+$route['pegawai'] = 'C_pegawai';
+$route['pegawai/insert'] = 'C_pegawai/insert';

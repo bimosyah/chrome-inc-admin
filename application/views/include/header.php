@@ -76,7 +76,7 @@
             <li class="nav-header">DATA</li>
             <li class="nav-item has-treeview menu-close">
               <a href="#" class="nav-link">
-                <i class="nav-icon far fa-envelope"></i>
+                <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Barang
                   <i class="fas fa-angle-left right"></i>
@@ -91,11 +91,28 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url() ?>" class="nav-link">
+            <li class="nav-item has-treeview menu-close">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Pegawai</p>
+                <p>
+                  Pegawai
+                  <i class="fas fa-angle-left right"></i>
+                </p>
               </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="<?php echo base_url("pegawai/") ?>" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Daftar Pegawai</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?php echo base_url("pegawai/insert") ?>" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Input Pegawai</p>
+                  </a>
+                </li>
+              </ul>
             </li>
             <li class="nav-item">
               <a href="<?php echo base_url() ?>" class="nav-link">
