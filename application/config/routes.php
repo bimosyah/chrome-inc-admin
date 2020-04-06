@@ -53,4 +53,5 @@ $route['default_controller'] = 'C_dashboard';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['default_controller'] = 'C_dashboard';
+$route['dashboard'] = 'C_dashboard';
+$route['barang'] = 'C_barang';

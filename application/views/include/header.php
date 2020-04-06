@@ -75,7 +75,7 @@
             </li>
             <li class="nav-header">DATA</li>
             <li class="nav-item">
-              <a href="<?php echo base_url() ?>" class="nav-link">
+              <a href="<?php echo base_url("barang") ?>" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>Barang</p>
               </a>
