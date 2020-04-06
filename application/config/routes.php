@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['dashboard'] = 'C_dashboard';
 $route['barang'] = 'C_barang';
+$route['barang/insert'] = 'C_barang/insert';

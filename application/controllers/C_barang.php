@@ -8,6 +8,16 @@ class C_barang extends CI_Controller {
 		$this->load->view('barang/index');
 	}
 
+	public function insert()
+	{
+		$this->load->view('barang/insert');
+	}
+
+	public function save()
+	{
+		
+	}
+
 }
 
 /* End of file C_barang.php */
