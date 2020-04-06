@@ -52,6 +52,15 @@
 <!-- jsGrid -->
 <script src="<?php echo base_url('assets/plugins/jsgrid/demos/db.js') ?>"></script>
 <script src="<?php echo base_url('assets/plugins/jsgrid/jsgrid.min.js') ?>"></script>
-<!-- page script -->
+<!-- DataTables -->
+<script src="<?php echo base_url("assets/plugins/datatables/jquery.dataTables.js") ?>"></script>
+<script src="<?php echo base_url("assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js") ?>"></script>
+
+<script>
+  $(function () {
+    $('#table_pegawai').DataTable();
+  });
+
+</script>
 </body>
 </html>

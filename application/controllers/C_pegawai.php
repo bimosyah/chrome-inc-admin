@@ -5,14 +5,14 @@ class C_pegawai extends CI_Controller {
 
 	public function index()
 	{
-				
+		$this->load->view('pegawai/index');
 	}
 
 	public function insert()
 	{
 		$this->load->view('pegawai/insert');
 	}
-	
+
 }
 
 /* End of file C_pegawai.php */
