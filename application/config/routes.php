@@ -49,10 +49,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'home';
+$route['default_controller'] = 'C_dashboard';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['data'] = 'api/data/insert_jumlah';
-$route['alpha'] = 'api/data/insert_alpha';
-$route['hitung'] = 'api/data/double_exponential';
+$route['dashboard'] = 'C_dashboard';
