@@ -28,7 +28,7 @@ class M_pegawai extends CI_Model {
 		return $query;
 	}
 
-	public function delete()
+	public function delete($id)
 	{
 		$this->db->where('id_pegawai', $id);
 		$query = $this->db->delete('pegawai');

@@ -28,8 +28,8 @@
 											<td><?php echo $value->no_telp ?></td>
 											<td><?php echo $value->alamat ?></td>
 											<td>
-												<a href="#" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</a>
-												<a href="#" class="btn btn-sm btn-danger"><i class="fas fa-edit"></i> Hapus</a>
+												<a href="<?php echo base_url("pegawai/edit/{$value->id_pegawai}") ?>" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</a>
+												<a href="<?php echo base_url("pegawai/delete/{$value->id_pegawai}") ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</a>
 											</td>
 										</tr>
 									<?php endforeach;?>

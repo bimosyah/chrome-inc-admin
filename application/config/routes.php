@@ -61,3 +61,6 @@ $route['barang/insert'] = 'C_barang/insert';
 $route['pegawai'] = 'C_pegawai';
 $route['pegawai/insert'] = 'C_pegawai/insert';
 $route['pegawai/save'] = 'C_pegawai/save';
+$route['pegawai/delete/(:any)'] = 'C_pegawai/delete/$1';
+$route['pegawai/edit/(:any)'] = 'C_pegawai/edit/$1';
+$route['pegawai/update/(:any)'] = 'C_pegawai/update/$1';
