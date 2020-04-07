@@ -7,7 +7,7 @@
 				<div class="col-lg-12">
 					<div class="card card-info">
 						<div class="card-body">
-							<table id="table_pegawai" class="table table-bordered table-hover">
+							<table id="datatable" class="table table-bordered table-hover">
 								<thead>
 									<tr>
 										<th>Nama</th>

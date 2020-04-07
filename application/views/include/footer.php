@@ -58,7 +58,7 @@
 
 <script>
   $(function () {
-    $('#table_pegawai').DataTable();
+    $('#datatable').DataTable();
   });
 
 </script>
