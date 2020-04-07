@@ -19,17 +19,21 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>Bimo</td>
-										<td>Bos</td>
-										<td>Bimo</td>
-										<td>081233045596</td>
-										<td>Jl Jaya Srani IV </td>
-										<td>
-											<a href="#" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</a>
-											<a href="#" class="btn btn-sm btn-danger"><i class="fas fa-edit"></i> Hapus</a>
-										</td>
-									</tr>
+									<?php 
+									foreach ($pegawai as $value): ?>
+										<tr>
+											<td><?php echo $value->nama_pegawai?></td>
+											<td><?php echo $value->jabatan ?></td>
+											<td><?php echo $value->username ?></td>
+											<td><?php echo $value->no_telp ?></td>
+											<td><?php echo $value->alamat ?></td>
+											<td>
+												<a href="#" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</a>
+												<a href="#" class="btn btn-sm btn-danger"><i class="fas fa-edit"></i> Hapus</a>
+											</td>
+										</tr>
+									<?php endforeach;?>
+
 								</tbody>
 							</table>
 

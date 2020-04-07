@@ -60,3 +60,4 @@ $route['barang/insert'] = 'C_barang/insert';
 
 $route['pegawai'] = 'C_pegawai';
 $route['pegawai/insert'] = 'C_pegawai/insert';
+$route['pegawai/save'] = 'C_pegawai/save';
