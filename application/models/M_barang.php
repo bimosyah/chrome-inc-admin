@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_pegawai extends CI_Model {
+class M_barang extends CI_Model {
 
-	protected $TABLE = "pegawai";
+	protected $TABLE = "barang";
 
 	public function get($id = null)
 	{
@@ -38,5 +38,5 @@ class M_pegawai extends CI_Model {
 
 }
 
-/* End of file M_pegawai.php */
-/* Location: ./application/models/M_pegawai.php */
+/* End of file M_barang.php */
+/* Location: ./application/models/M_barang.php */

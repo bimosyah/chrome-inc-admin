@@ -64,3 +64,10 @@ $route['pegawai/save'] = 'C_pegawai/save';
 $route['pegawai/delete/(:any)'] = 'C_pegawai/delete/$1';
 $route['pegawai/edit/(:any)'] = 'C_pegawai/edit/$1';
 $route['pegawai/update/(:any)'] = 'C_pegawai/update/$1';
+
+$route['barang'] = 'C_barang';
+$route['barang/insert'] = 'C_barang/insert';
+$route['barang/save'] = 'C_barang/save';
+$route['barang/delete/(:any)'] = 'C_barang/delete/$1';
+$route['barang/edit/(:any)'] = 'C_barang/edit/$1';
+$route['barang/update/(:any)'] = 'C_barang/update/$1';
