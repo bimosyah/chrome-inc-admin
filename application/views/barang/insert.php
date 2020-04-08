@@ -32,12 +32,14 @@
 									<fieldset class="border p-2">
 										<legend  class="w-auto">Total</legend>
 										<div class="col-lg-12">
-											<h1 id="text_total_harga" style="font-size: 50px;">Rp. </h1>
+											<h1 id="text_total_harga" style="font-size: 50px;"><?php echo (isset($barang[0]->total_harga) ? "Rp. ".$barang[0]->total_harga : "Rp. 0") ?></h1>
 										</div>
 										<br>
 										<div class="col-lg-4">
-											<button type="submit" class="btn btn-info">Simpan</button>
-											<button type="reset" class="btn btn-default">Cancel</button>
+											<div <?php echo ($this->uri->segment(2) == "cek" ? 'style="display: none"' : "") ?>>
+												<button type="submit" class="btn btn-info">Simpan</button>
+												<button type="reset" class="btn btn-default">Cancel</button>
+											</div>
 										</div>
 									</fieldset>
 								</div>
@@ -130,11 +132,11 @@
 														value="<?php echo (isset($barang[0]->omset_pabrik) ? $barang[0]->omset_pabrik : "") ?>">
 													</div>
 												</div>
-												<div class="form-group">
+												<div class="form-group" <?php echo ($this->uri->segment(2) == "cek" ? 'style="display: none"' : "") ?>>
 													<label for="omset_pabrik">Hitung Total</label>
 													<div class="col-sm-12">
 														<button type="button" onclick="hitung_total()" class="btn btn-info col-sm-12">Hitung</button>
-														<input type="hidden" class="form-control" name="total_harga" id="total_harga">
+														<input type="hidden" class="form-control" name="total_harga" id="total_harga" value="<?php echo (isset($barang[0]->total_harga) ? $barang[0]->total_harga : "") ?>">
 													</div>
 												</div>
 											</div>

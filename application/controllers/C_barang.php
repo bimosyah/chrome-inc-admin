@@ -35,14 +35,13 @@ class C_barang extends CI_Controller {
 		$bonus = $this->input->post('bonus');
 		$peralatan = $this->input->post('peralatan');
 		$omset_pabrik = $this->input->post('omset_pabrik');
-		// $total = $this->input->post('total');
-		$total = 102;
+		$total_harga = $this->input->post('total_harga');
 		
 		$object = array(
 			'kode_barang' => $kode_barang,
 			'nama_barang' => $nama_barang,
 			'ongkos_seleb' => $ongkos_seleb,
-			'bahan_seleb' => md5($bahan_seleb),
+			'bahan_seleb' => $bahan_seleb,
 			'ongkos_crom' => $ongkos_crom,
 			'bahan_crom' => $bahan_crom,
 			'ongkos_hapus_cat' => $ongkos_hapus_cat,
@@ -52,7 +51,7 @@ class C_barang extends CI_Controller {
 			'bonus' => $bonus,
 			'peralatan' => $peralatan,
 			'omset_pabrik' => $omset_pabrik,
-			'total' => $total
+			'total_harga' => $total_harga
 		);
 
 		$save = $this->barang->insert($object);
@@ -62,6 +61,12 @@ class C_barang extends CI_Controller {
 	}
 
 	public function edit($id)
+	{
+		$data['barang'] = $this->barang->get($id);
+		$this->load->view('barang/insert',$data);
+	}
+
+	public function cek($id)
 	{
 		$data['barang'] = $this->barang->get($id);
 		$this->load->view('barang/insert',$data);

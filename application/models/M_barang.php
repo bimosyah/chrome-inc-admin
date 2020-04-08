@@ -10,7 +10,7 @@ class M_barang extends CI_Model {
 		if ($id == null) {
 			$query = $this->db->get($this->TABLE)->result();
 		}else {
-			$this->db->where('id_pegawai', $id);
+			$this->db->where('id_barang', $id);
 			$query = $this->db->get($this->TABLE)->result();
 		}
 		return $query;
@@ -24,14 +24,14 @@ class M_barang extends CI_Model {
 
 	public function update($id,$object)
 	{
-		$this->db->where('id_pegawai', $id);
+		$this->db->where('id_barang', $id);
 		$query = $this->db->update($this->TABLE, $object);
 		return $query;
 	}
 
 	public function delete($id)
 	{
-		$this->db->where('id_pegawai', $id);
+		$this->db->where('id_barang', $id);
 		$query = $this->db->delete($this->TABLE);
 		return $query;
 	}
