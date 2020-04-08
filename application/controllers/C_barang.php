@@ -74,23 +74,38 @@ class C_barang extends CI_Controller {
 
 	public function update($id)
 	{
+		$kode_barang = $this->input->post('kode_barang');
 		$nama_barang = $this->input->post('nama_barang');
-		$jabatan = $this->input->post('jabatan');
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		$no_telp = $this->input->post('no_telp');
-		$alamat = $this->input->post('alamat');
-
+		$ongkos_seleb = $this->input->post('ongkos_seleb');
+		$bahan_seleb = $this->input->post('bahan_seleb');
+		$ongkos_crom = $this->input->post('ongkos_crom');
+		$bahan_crom = $this->input->post('bahan_crom');
+		$ongkos_hapus_cat = $this->input->post('ongkos_hapus_cat');
+		$marketing = $this->input->post('marketing');
+		$listrik = $this->input->post('listrik');
+		$pengepakan_barang = $this->input->post('pengepakan_barang');
+		$bonus = $this->input->post('bonus');
+		$peralatan = $this->input->post('peralatan');
+		$omset_pabrik = $this->input->post('omset_pabrik');
+		$total_harga = $this->input->post('total_harga');
+		
 		$object = array(
+			'kode_barang' => $kode_barang,
 			'nama_barang' => $nama_barang,
-			'jabatan' => $jabatan,
-			'username' => $username,
-			'password' => md5($password),
-			'no_telp' => $no_telp,
-			'alamat' => $alamat
+			'ongkos_seleb' => $ongkos_seleb,
+			'bahan_seleb' => $bahan_seleb,
+			'ongkos_crom' => $ongkos_crom,
+			'bahan_crom' => $bahan_crom,
+			'ongkos_hapus_cat' => $ongkos_hapus_cat,
+			'marketing' => $marketing,
+			'listrik' => $listrik,
+			'pengepakan_barang' => $pengepakan_barang,
+			'bonus' => $bonus,
+			'peralatan' => $peralatan,
+			'omset_pabrik' => $omset_pabrik,
+			'total_harga' => $total_harga
 		);
 
-		// echo json_encode($object);
 		$update = $this->barang->update($id,$object);
 		if ($update) {
 			redirect('barang','refresh');
