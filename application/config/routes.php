@@ -72,3 +72,5 @@ $route['barang/delete/(:any)'] = 'C_barang/delete/$1';
 $route['barang/edit/(:any)'] = 'C_barang/edit/$1';
 $route['barang/update/(:any)'] = 'C_barang/update/$1';
 $route['barang/cek/(:any)'] = 'C_barang/cek/$1';
+
+$route['customer'] = 'C_customer';

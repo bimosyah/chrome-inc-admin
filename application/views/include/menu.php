@@ -75,7 +75,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="<?php echo base_url() ?>" class="nav-link">
+          <a href="<?php echo base_url("customer") ?>" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>Customer</p>
           </a>
