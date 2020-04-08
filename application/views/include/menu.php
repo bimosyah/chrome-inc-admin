@@ -28,7 +28,7 @@
           </a>
         </li>
         <li class="nav-header">DATA</li>
-        <li class="nav-item has-treeview menu-close">
+        <li <?php echo ($this->uri->segment(1) == "barang" ? 'class="nav-item has-treeview menu-open"' : 'class="nav-item has-treeview menu-close"') ?>>
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
@@ -38,13 +38,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo base_url("barang/") ?>" class="nav-link">
+              <a href="<?php echo base_url("barang/") ?>" <?php echo ($this->uri->segment(1) == "barang" && $this->uri->segment(2) == "" ? 'class = "nav-link active"' : 'class = "nav-link"') ?>>
                 <i class="far fa-circle nav-icon"></i>
                 <p>Daftar Barang</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?php echo base_url("barang/insert") ?>" class="nav-link">
+              <a href="<?php echo base_url("barang/insert") ?>" <?php echo ($this->uri->segment(1) == "barang" && $this->uri->segment(2) == "insert" ? 'class = "nav-link active"' : 'class = "nav-link"') ?>>
                 <i class="far fa-circle nav-icon"></i>
                 <p>Input Barang</p>
               </a>
