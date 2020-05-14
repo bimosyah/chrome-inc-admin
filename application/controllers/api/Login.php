@@ -32,7 +32,7 @@ class Login extends CI_Controller {
 		}else {
 			$result = array(
 				'status' => 0,
-				'message' => "gagal"
+				'message' => "gagal",
 				'pegawai' => array()
 			);
 			echo json_encode($result);
