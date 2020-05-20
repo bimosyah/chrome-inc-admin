@@ -8,6 +8,13 @@ class M_transaksi extends CI_Model {
 		return $query;		
 	}
 
+	public function BarangDanHarga(){
+		$query = $this->db->get('barang')->result();
+		return $query;	
+	}
+
+
+
 	
 
 }

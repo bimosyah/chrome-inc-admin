@@ -210,6 +210,40 @@ class Data extends CI_Controller {
 		}
 	}
 
+	public function getBarangHarga(){
+		$query = $this->transaksi->BarangDanHarga();
+		$array_barang = array();
+		if ($query) {
+			foreach ($query as $key => $value) {
+				$nama_barang = $value->nama_barang;
+				$total_harga = $value->total_harga;
+				$data = array(
+					'nama_barang' => $value->nama_barang,
+					'total_harga' => $value->total_harga
+				);
+				array_push($array_barang, $data);
+			}
+			$result = array(
+				'status' => 1,
+				'message' => "sukses",
+				'barang_harga' => array(
+					$array_barang
+				)
+			);
+			echo json_encode($result);
+		}else{
+			$result = array(
+				'status' => 0,
+				'message' => "gagal",
+				'barang_harga' => array(
+					'nama_barang' => "",
+					'total_harga' => ""
+				)
+			);
+			echo json_encode($result);
+		}
+	}
+
 	
 
 
