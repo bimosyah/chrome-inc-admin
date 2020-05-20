@@ -6,7 +6,6 @@ class Transaksi extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('M_pegawai', 'M_barang', 'M_inventory');
 		$this->load->model('M_transaksi', 'transaksi');
 	}
 	
@@ -39,6 +38,12 @@ class Transaksi extends CI_Controller {
 		}
 	}
 
+	public function getDaftarBarangMasuk()
+	{
+		$query = $this->transaksi->viewBarangMasuk();
+		header('Content-Type: application/json');
+		echo json_encode($query);
+	}
 }
 
 /* End of file Transaksi.php */

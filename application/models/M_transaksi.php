@@ -14,7 +14,7 @@ class M_transaksi extends CI_Model {
 	}
 
 	public function viewBarangMasuk(){
-		$query = $this->db->get('view_barang_masuk')->result();
+		$query = $this->db->get('view_daftar_barang_masuk')->result();
 		return $query;
 	}
 

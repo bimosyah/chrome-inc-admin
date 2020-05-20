@@ -6,8 +6,7 @@ class Barang extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('M_pegawai', 'M_barang', 'M_inventory');
-		$this->load->model('M_transaksi', 'transaksi');
+		$this->load->model('M_barang', 'barang');
 	}
 
 	public function insertBarang()
@@ -82,7 +81,7 @@ class Barang extends CI_Controller {
 
 	public function getBarangHarga()
 	{
-		$query = $this->transaksi->BarangDanHarga();
+		$query = $this->barang->get();
 		$array_barang = array();
 		if ($query) {
 			foreach ($query as $key => $value) {
@@ -110,12 +109,6 @@ class Barang extends CI_Controller {
 		header('Content-Type: application/json');
 		echo json_encode($result);
 	}
-
-	public function getDaftarBarangMasuk()
-	{
-		
-	}
-
 }
 
 /* End of file Barang.php */
