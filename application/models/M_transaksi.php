@@ -17,6 +17,25 @@ class M_transaksi extends CI_Model {
 		$query = $this->db->get('view_barang_masuk')->result();
 		return $query;
 	}
+
+	public function viewTransaksi()
+	{
+		$query = $this->db->get('view_transaksi')->result();
+		return $query;
+	}
+
+	public function viewTransaksiDetail()
+	{
+		$query = $this->db->get('view_transaksi_detail')->result();
+		return $query;
+	}
+
+	public function viewTransaksiDetailByIdTransaksi($id_transaksi)
+	{
+		$this->db->where('id_transaksi', $id_transaksi);
+		$query = $this->db->get('view_transaksi_detail')->result();
+		return $query;
+	}
 	
 
 }
