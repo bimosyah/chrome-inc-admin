@@ -19,6 +19,7 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        
         <li class="nav-item">
           <a href="<?php echo base_url("dashboard") ?>" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -27,7 +28,9 @@
             </p>
           </a>
         </li>
+
         <li class="nav-header">DATA</li>
+
         <li <?php echo ($this->uri->segment(1) == "barang" ? 'class="nav-item has-treeview menu-open"' : 'class="nav-item has-treeview menu-close"') ?>>
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -51,6 +54,7 @@
             </li>
           </ul>
         </li>
+
         <li <?php echo ($this->uri->segment(1) == "pegawai" ? 'class="nav-item has-treeview menu-open"' : 'class="nav-item has-treeview menu-close"') ?>>
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -74,25 +78,49 @@
             </li>
           </ul>
         </li>
+
         <li class="nav-item">
           <a href="<?php echo base_url("customer") ?>" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>Customer</p>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="<?php echo base_url() ?>" class="nav-link">
+
+        <li <?php echo ($this->uri->segment(1) == "inventory" ? 'class="nav-item has-treeview menu-open"' : 'class="nav-item has-treeview menu-close"') ?>>
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>Inventory</p>
+            <p>
+              Inventory
+              <i class="fas fa-angle-left right"></i>
+            </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="<?php echo base_url("inventory/") ?>" <?php echo ($this->uri->segment(1) == "inventory" && $this->uri->segment(2) == "" ? 'class = "nav-link active"' : 'class = "nav-link"') ?>>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Daftar Inventory</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url("inventory/insert") ?>" <?php echo ($this->uri->segment(1) == "inventory" && $this->uri->segment(2) == "insert" ? 'class = "nav-link active"' : 'class = "nav-link"') ?>>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Input Inventory</p>
+              </a>
+            </li>
+          </ul>
         </li>
+
+
         <li class="nav-header">TRANSAKSI</li>
+
         <li class="nav-item">
           <a href="<?php echo base_url() ?>" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>Transaksi</p>
           </a>
         </li>
+
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

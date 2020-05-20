@@ -74,3 +74,10 @@ $route['barang/update/(:any)'] = 'C_barang/update/$1';
 $route['barang/cek/(:any)'] = 'C_barang/cek/$1';
 
 $route['customer'] = 'C_customer';
+
+$route['inventory'] = 'C_inventory';
+$route['inventory/insert'] = 'C_inventory/insert';
+$route['inventory/save'] = 'C_inventory/save';
+$route['inventory/delete/(:any)'] = 'C_inventory/delete/$1';
+$route['inventory/edit/(:any)'] = 'C_inventory/edit/$1';
+$route['inventory/update/(:any)'] = 'C_inventory/update/$1';

@@ -12,7 +12,7 @@ class C_inventory extends CI_Controller {
 	public function index()
 	{
 		$data['inventory'] = $this->inventory->get();
-		// $this->load->view('inventory/index',$data);
+		$this->load->view('inventory/index',$data);
 	}
 
 	public function insert()
@@ -22,7 +22,6 @@ class C_inventory extends CI_Controller {
 
 	public function save()
 	{
-		$no_inv = $this->input->post('no_inv');
 		$nama_inv = $this->input->post('nama_inv');
 		$jumlah = $this->input->post('jumlah');
 		$satuan = $this->input->post('satuan');
@@ -30,7 +29,6 @@ class C_inventory extends CI_Controller {
 		$keterangan = $this->input->post('keterangan');
 
 		$object = array(
-			'no_inv' => $no_inv,
 			'nama_inv' => $nama_inv,
 			'jumlah' => $jumlah,
 			'satuan' => $satuan,
@@ -47,7 +45,7 @@ class C_inventory extends CI_Controller {
 	public function edit($id)
 	{
 		$data['inventory'] = $this->inventory->get($id);
-		// $this->load->view('inventory/insert',$data);
+		$this->load->view('inventory/insert',$data);
 	}
 
 	public function update($id)

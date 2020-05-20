@@ -10,7 +10,7 @@
 							<table id="datatable" class="table table-bordered table-hover">
 								<thead>
 									<tr>
-										<th>No</th>
+										<th>#</th>
 										<th>Nama</th>
 										<th>No Telp</th>
 										<th>Alamat</th>
@@ -21,6 +21,7 @@
 									$no = 1;
 									foreach ($customer as $value): ?>
 										<tr>
+											<td><?php echo $no?></td>
 											<td><?php echo $value->nama_customer?></td>
 											<td><?php echo $value->no_telp ?></td>
 											<td><?php echo $value->alamat ?></td>
