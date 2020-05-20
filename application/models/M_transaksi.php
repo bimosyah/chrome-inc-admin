@@ -13,8 +13,10 @@ class M_transaksi extends CI_Model {
 		return $query;	
 	}
 
-
-
+	public function viewBarangMasuk(){
+		$query = $this->db->get('view_barang_masuk')->result();
+		return $query;
+	}
 	
 
 }

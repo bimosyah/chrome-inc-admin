@@ -226,18 +226,22 @@ class Data extends CI_Controller {
 			$result = array(
 				'status' => 1,
 				'message' => "sukses",
-				'barang_harga' => $array_barang
+				'barang_harga' => array(
+					$array_barang
+				)
 			);
+			echo json_encode($result);
 		}else{
 			$result = array(
 				'status' => 0,
 				'message' => "gagal",
-				'barang_harga' => $array_barang
+				'barang_harga' => array(
+					'nama_barang' => "",
+					'total_harga' => ""
+				)
 			);
+			echo json_encode($result);
 		}
-
-		header('Content-Type: application/json');
-		echo json_encode($result);
 	}
 
 	
