@@ -88,6 +88,7 @@ class Barang extends CI_Controller {
 				$nama_barang = $value->nama_barang;
 				$total_harga = $value->total_harga;
 				$data = array(
+					'id_barang' => $value->id_barang,
 					'nama_barang' => $value->nama_barang,
 					'total_harga' => $value->total_harga
 				);
