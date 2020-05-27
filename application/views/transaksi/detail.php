@@ -15,6 +15,7 @@
 										<th>#</th>
 										<th>Id Transaksi</th>
 										<th>Nama Barang</th>
+										<th>Harga Satuan</th>
 										<th>Jumlah Barang</th>
 										<th>Harga Total</th>
 										<th>Estimasi</th>
@@ -28,6 +29,7 @@
 											<td><?php echo $i?></td>
 											<td><?php echo $value->id_transaksi ?></td>
 											<td><?php echo $value->nama_barang ?></td>
+											<td><?php echo $value->harga_satuan ?></td>
 											<td><?php echo $value->jumlah_barang ?></td>
 											<td><?php echo $value->harga_total ?></td>
 											<td><?php echo $value->estimasi ?></td>

@@ -3,9 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_transaksi extends CI_Model {
 
-	public function daftarBarangMasuk(){
-		$query = $this->db->get('daftar_barang_masuk')->result();
-		return $query;		
+	public function insert($object)
+	{
+		$query = $this->db->insert('transaksi', $object);
+		return $query;
+	}
+
+	public function get()
+	{
+		$query = $this->db->get('transaksi')->result();
+		return $query;
+
 	}
 
 	public function BarangDanHarga(){
