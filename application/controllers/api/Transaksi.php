@@ -25,7 +25,7 @@ class Transaksi extends CI_Controller {
 		
 		if (!$this->upload->do_upload('user_file')){
 			$result = array(
-				'status' => 1,
+				'status' => 0,
 				'message' => "upload gagal ".$this->upload->display_errors(),
 			);
 		}
