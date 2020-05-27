@@ -17,8 +17,22 @@ class C_transaksi extends CI_Controller {
 
 	public function detail($id_transaksi)
 	{
-		$data['detail_transaksi'] = $this->transaksi->viewTransaksiDetailByIdTransaksi($id_transaksi);
+		$detail_transaksi = $this->transaksi->viewTransaksiDetailByIdTransaksi($id_transaksi);
+		$data['detail_transaksi'] = $detail_transaksi;
+		$data['total_detail_transaksi'] = $this->totalHargaTransaksi($id_transaksi);
 		$this->load->view('transaksi/detail', $data);	
+	}
+
+	public function totalHargaTransaksi($id_transaksi)
+	{
+		$detail_transaksi = $this->transaksi->viewTransaksiDetailByIdTransaksi($id_transaksi);
+		$total_harga = 0;
+
+		foreach ($detail_transaksi as $value) {
+			$total_harga += $value->harga_total;
+		}
+
+		return $total_harga;
 	}
 
 }

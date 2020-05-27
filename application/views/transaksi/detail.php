@@ -36,10 +36,12 @@
 										</tr>
 										<?php $i++ ?>
 									<?php endforeach;?>
-
 								</tbody>
+								<tfoot>
+									<th colspan="5" style="text-align: right;">Total Harga</th>
+									<th colspan="2">Rp. <?php echo number_format($total_detail_transaksi) ?></th>
+								</tfoot>
 							</table>
-
 						</div>
 					</div>
 				</div>
