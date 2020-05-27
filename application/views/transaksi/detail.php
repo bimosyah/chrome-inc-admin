@@ -9,6 +9,8 @@
 						<div class="card-body">
 							<a href="<?php echo base_url("transaksi") ?>" class="btn btn-sm btn-warning">Kembali</a>
 							<br><br>
+							<img src=<?php echo base_url('uploads/'.$gambar )?>>
+							<br><br>
 							<table id="datatable" class="table table-bordered table-hover">
 								<thead>
 									<tr>
@@ -38,8 +40,8 @@
 									<?php endforeach;?>
 								</tbody>
 								<tfoot>
-									<th colspan="5" style="text-align: right;">Total Harga</th>
-									<th colspan="2">Rp. <?php echo number_format($total_detail_transaksi) ?></th>
+									<th colspan="5" style="text-align: right;font-size: 30px;">Total Harga</th>
+									<th colspan="2" style="font-size: 30px;">Rp. <?php echo number_format($total_detail_transaksi) ?></th>
 								</tfoot>
 							</table>
 						</div>

@@ -17,7 +17,6 @@
 										<th>Customer</th>
 										<th>Pegawai</th>
 										<th>Status</th>
-										<th>Gambar</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -33,7 +32,6 @@
 											<td><?php echo $value->nama_customer ?></td>
 											<td><?php echo $value->nama_pegawai ?></td>
 											<td><?php echo $value->status ?></td>
-											<td><?php echo $value->gambar ?></td>
 											<td>
 												<a href="<?php echo base_url("transaksi/detail/".$value->id_transaksi) ?>" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Detail</a>
 											</td>

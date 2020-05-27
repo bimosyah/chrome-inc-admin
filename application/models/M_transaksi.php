@@ -9,9 +9,15 @@ class M_transaksi extends CI_Model {
 		return $query;
 	}
 
-	public function get()
+	public function get($id = null)
 	{
-		$query = $this->db->get('transaksi')->result();
+		if ($id == null) {
+			$query = $this->db->get('transaksi')->result();	
+		}else {
+			$this->db->where('id_transaksi', $id);
+			$query = $this->db->get('transaksi')->result();
+		}
+		
 		return $query;
 
 	}

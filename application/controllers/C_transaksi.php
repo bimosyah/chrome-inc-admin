@@ -20,6 +20,8 @@ class C_transaksi extends CI_Controller {
 		$detail_transaksi = $this->transaksi->viewTransaksiDetailByIdTransaksi($id_transaksi);
 		$data['detail_transaksi'] = $detail_transaksi;
 		$data['total_detail_transaksi'] = $this->totalHargaTransaksi($id_transaksi);
+		$data['gambar'] = $this->getGambar($id_transaksi);
+
 		$this->load->view('transaksi/detail', $data);	
 	}
 
@@ -33,6 +35,13 @@ class C_transaksi extends CI_Controller {
 		}
 
 		return $total_harga;
+	}
+
+	public function getGambar($id_transaksi)
+	{
+		$transaksi = $this->transaksi->get($id_transaksi);
+		$gambar = $transaksi[0]->gambar;
+		return $gambar;
 	}
 
 }
