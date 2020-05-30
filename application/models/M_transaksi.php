@@ -50,6 +50,13 @@ class M_transaksi extends CI_Model {
 		$query = $this->db->get('view_transaksi_detail')->result();
 		return $query;
 	}
+
+	public function viewCustomerByIdTransaksi($id_transaksi)
+	{
+		$this->db->where('id_transaksi', $id_transaksi);
+		$query = $this->db->get('view_transaksi_customer')->result();
+		return $query;
+	}
 	
 
 }

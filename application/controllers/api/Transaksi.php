@@ -276,7 +276,6 @@ class Transaksi extends CI_Controller {
 		$gambar = $transaksi[0]->gambar;
 		return $gambar;
 	}
-
 	
 	public function getTransaksiById($id_transaksi)
 	{
@@ -287,6 +286,7 @@ class Transaksi extends CI_Controller {
 				'message' => "sukses",
 				'total_harga' => $this->totalHargaTransaksi($id_transaksi),
 				'gambar' => base_url('uploads/'.$this->getGambar($id_transaksi)),
+				'detail_customer' => $this->transaksi->viewCustomerByIdTransaksi($id_transaksi),
 				'detail_barang' => $query
 			);
 		}else{
@@ -295,6 +295,7 @@ class Transaksi extends CI_Controller {
 				'message' => "gagal",
 				'total_harga' => 0,
 				'gambar' => null,
+				'detail_customer' => array(),
 				'detail_barang' => array()
 			);
 		}
