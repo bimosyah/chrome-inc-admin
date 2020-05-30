@@ -278,14 +278,14 @@ class Transaksi extends CI_Controller {
 				'status' => 1,
 				'message' => "sukses",
 				'total_harga' => $this->totalHargaTransaksi($id_transaksi),
-				'daftar_barang' => $query
+				'detail_barang' => $query
 			);
 		}else{
 			$result = array(
 				'status' => 0,
 				'message' => "gagal",
 				'total_harga' => 0,
-				'daftar_barang' => array()
+				'detail_barang' => array()
 			);
 		}
 		header('Content-Type: application/json');
