@@ -14,6 +14,103 @@ class Transaksi extends CI_Controller {
 
 	public function insertTransaksi()
 	{
+		$file_gambar = $this->input->post('gambar');
+		$nama_gambar = $this->generateIdTransaksi() + 1;
+		$upload_path = "./uploads/{$nama_gambar}.jpg";
+
+		if ($file_gambar == "" || $file_gambar == null ) {
+			$result = array(
+				'status' => 0,
+				'message' => "gambar null",
+			);
+		}else {
+			file_put_contents($upload_path, base64_decode($file_gambar));
+			$insert_detail_transaksi = null;
+
+			//data customer
+			$nama_customer = $this->input->post('nama_customer');
+			$no_telp = $this->input->post('no_telp');
+			$alamat = $this->input->post('alamat');	
+
+			$arr_customer = array(
+				'nama_customer' => $nama_customer,
+				'no_telp' => $no_telp,
+				'alamat' => $alamat
+			);
+			$insert_customer = $this->customer->insert($arr_customer);
+
+		//data transaksi
+			$file_gambar = $this->input->post('gambar');
+
+			$tanggal_masuk = date("Y-m-d");
+			$tanggal_keluar = date("Y-m-d");
+			$id_customer = $this->generateIdCustomer();
+			$id_pegawai = $this->input->post('id_pegawai');
+			$id_status = $this->input->post('id_status');
+			$gambar = $nama_gambar;
+
+			$arr_transaksi = array(
+				'tanggal_masuk' => $tanggal_masuk,
+				'tanggal_keluar' => $tanggal_keluar,
+				'id_customer' => $id_customer,
+				'id_pegawai' => $id_pegawai,
+				'id_status' => $id_status,
+				'gambar' => $gambar
+			);
+			$insert_transaksi = $this->transaksi->insert($arr_transaksi);
+
+			//detail transaksi
+			$id_transaksi = $this->generateIdTransaksi();
+			$id_barang = $this->input->post('id_barang');
+			$jumlah_barang = $this->input->post('jumlah_barang');
+
+			for ($i = 0; $i < count($id_barang); $i++) {
+				$harga_satuan = $this->getHargaBarang($id_barang[$i]);
+				$harga_total = $jumlah_barang[$i] * $harga_satuan;
+				$estimasi = $this->input->post('estimasi');
+
+				$arr_detail_transaksi = array(
+					'id_transaksi' => $id_transaksi,
+					'id_barang' => $id_barang[$i],
+					'jumlah_barang' => $jumlah_barang[$i],
+					'harga_total' => $harga_total,
+					'estimasi' => $estimasi
+				);
+				$insert_detail_transaksi = $this->detail_transaksi->insert($arr_detail_transaksi);
+			}
+
+			if ($insert_customer) {
+				if ($insert_transaksi) {
+					if ($insert_detail_transaksi) {
+						$result = array(
+							'status' => 1,
+							'message' => "sukses",
+						);
+					}else {
+						$result = array(
+							'status' => 0,
+							'message' => "detail transaksi gagal",
+						);
+					}
+				}else {
+					$result = array(
+						'status' => 1,
+						'message' => "transaksi gagal",
+					);
+				}
+			}else {
+				$result = array(
+					'status' => 1,
+					'message' => "customer gagal",
+				);
+			}
+		}
+
+		echo json_encode($result);		
+	}
+
+	public function insertTransaksi2()
+	{
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'jpg|png|jpeg';
 		$config['max_size']  = '1000';
@@ -160,34 +257,39 @@ class Transaksi extends CI_Controller {
 			return $id_transaksi;
 		}
 	}
-	
-	public function getTransaksi()
+
+	public function totalHargaTransaksi($id_transaksi)
 	{
-		$query = $this->transaksi->daftarBarangMasuk();
+		$detail_transaksi = $this->transaksi->viewTransaksiDetailByIdTransaksi($id_transaksi);
+		$total_harga = 0;
+
+		foreach ($detail_transaksi as $value) {
+			$total_harga += $value->harga_total;
+		}
+
+		return $total_harga;
+	}
+	
+	public function getTransaksiById($id_transaksi)
+	{
+		$query = $this->transaksi->viewTransaksiDetailByIdTransaksi($id_transaksi);
 		if ($query) {
-			foreach ($query as $key => $value) {
-				$nama = $value->nama_customer;
-				$tanggal = $value->tanggal_masuk;
-				$status = $value->status;
-			}
 			$result = array(
 				'status' => 1,
 				'message' => "sukses",
-				'daftar_barang' => array(
-					'nama' => $nama,
-					'tanggal' => $tanggal,
-					'status' => $status
-				)
+				'total_harga' => $this->totalHargaTransaksi($id_transaksi),
+				'daftar_barang' => $query
 			);
-			echo json_encode($result);
 		}else{
 			$result = array(
 				'status' => 0,
 				'message' => "gagal",
+				'total_harga' => 0,
 				'daftar_barang' => array()
 			);
-			echo json_encode($result);
 		}
+		header('Content-Type: application/json');
+		echo json_encode($result);
 	}
 
 	public function getDaftarBarangMasuk()
