@@ -340,6 +340,30 @@ class Transaksi extends CI_Controller {
 		header('Content-Type: application/json');
 		echo json_encode($result);
 	}
+
+	public function updateStatusTransaksi()
+	{
+		$id_transaksi = $this->input->post('id_transaksi');
+		$id_status = $this->input->post('id_status');
+		
+		$object = array("id_status" => $id_status);
+		$result = $this->transaksi->update($id_transaksi,$object);
+
+		if ($result) {
+			$result = array(
+				'status' => 1,
+				'message' => "sukses"
+			);			
+		}else {
+			$result = array(
+				'status' => 0,
+				'message' => "gagal"
+			);			
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode($result);
+	}
 }
 
 /* End of file Transaksi.php */

@@ -58,6 +58,12 @@ class M_transaksi extends CI_Model {
 		return $query;
 	}
 	
+	public function update($id_transaksi,$object)
+	{
+		$this->db->where('id_transaksi', $id_transaksi);
+		$query = $this->db->update('transaksi', $object);
+		return $query;
+	}
 
 }
 
