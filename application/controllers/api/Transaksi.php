@@ -346,7 +346,7 @@ class Transaksi extends CI_Controller {
 		$id_transaksi = $this->input->post('id_transaksi');
 		$id_status = $this->input->post('id_status');
 		
-		$object = array("id_status" => $id_status);
+		$object = array("id_status" => $id_status+1);
 		$result = $this->transaksi->update($id_transaksi,$object);
 
 		if ($result) {
