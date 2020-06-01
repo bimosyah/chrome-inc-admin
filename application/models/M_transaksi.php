@@ -19,7 +19,6 @@ class M_transaksi extends CI_Model {
 		}
 		
 		return $query;
-
 	}
 
 	public function BarangDanHarga(){
@@ -28,6 +27,13 @@ class M_transaksi extends CI_Model {
 	}
 
 	public function viewBarangMasuk(){
+		$query = $this->db->get('view_daftar_barang_masuk')->result();
+		return $query;
+	}
+
+	public function viewTransaksiByName($customer_name)
+	{
+		$this->db->like('nama_customer', $customer_name, 'both'); 
 		$query = $this->db->get('view_daftar_barang_masuk')->result();
 		return $query;
 	}

@@ -239,7 +239,6 @@ class Transaksi extends CI_Controller {
 		}else {
 			return $id_customer;
 		}
-		
 	}
 
 	public function generateIdTransaksi()
@@ -299,6 +298,44 @@ class Transaksi extends CI_Controller {
 				'detail_barang' => array()
 			);
 		}
+		header('Content-Type: application/json');
+		echo json_encode($result);
+	}
+
+	public function getTransaksiByCustomerName($customer_name)
+	{
+		$query = $this->transaksi->viewTransaksiByName($customer_name);
+		$daftar_barang = array();
+		if ($query) {
+			foreach ($query as $key => $value) {
+				$id_transaksi = $value->id_transaksi;
+				$nama_customer = $value->nama_customer;
+				$tanggal_masuk = $value->tanggal_masuk;
+				$status = $value->nama_status;
+
+				$data = array(
+					'id_transaksi' => $id_transaksi,
+					'nama_customer' => $nama_customer,
+					'tanggal_masuk' => $tanggal_masuk,
+					'status' => $status
+				);
+
+				array_push($daftar_barang, $data);
+			}
+
+			$result = array(
+				'status' => 1,
+				'message' => "sukses",
+				'daftar_barang' => $daftar_barang 
+			);			
+		}else {
+			$result = array(
+				'status' => 0,
+				'message' => "gagal",
+				'daftar_barang' => $daftar_barang 
+			);
+		}
+
 		header('Content-Type: application/json');
 		echo json_encode($result);
 	}
