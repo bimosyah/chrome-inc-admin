@@ -21,6 +21,13 @@ class M_transaksi extends CI_Model {
 		return $query;
 	}
 
+	public function getBydate($date)
+	{
+		$this->db->where('tanggal_masuk', $date);
+		$query = $this->db->get('transaksi')->result();
+		return $query;
+	}
+
 	public function BarangDanHarga(){
 		$query = $this->db->get('barang')->result();
 		return $query;	

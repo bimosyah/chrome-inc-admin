@@ -39,14 +39,12 @@ class Transaksi extends CI_Controller {
 			);
 			$insert_customer = $this->customer->insert($arr_customer);
 
-		//data transaksi
-			$file_gambar = $this->input->post('gambar');
-
+			//data transaksi
 			$tanggal_masuk = date("Y-m-d");
 			$tanggal_keluar = date("Y-m-d");
 			$id_customer = $this->generateIdCustomer();
 			$id_pegawai = $this->input->post('id_pegawai');
-			$id_status = $this->input->post('id_status');
+			$id_status = 1;
 			$gambar = $nama_gambar;
 
 			$arr_transaksi = array(
@@ -213,6 +211,92 @@ class Transaksi extends CI_Controller {
 		echo json_encode($result);		
 	}
 
+	public function insertTransaksi3()
+	{
+		$nama_gambar = "";
+
+		$insert_detail_transaksi = null;
+
+			//data customer
+		$nama_customer = $this->input->post('nama_customer');
+		$no_telp = $this->input->post('no_telp');
+		$alamat = $this->input->post('alamat');	
+
+		$arr_customer = array(
+			'nama_customer' => $nama_customer,
+			'no_telp' => $no_telp,
+			'alamat' => $alamat
+		);
+		$insert_customer = $this->customer->insert($arr_customer);
+
+			//data transaksi
+		$tanggal_masuk = date("Y-m-d");
+		$tanggal_keluar = date("Y-m-d");
+		$id_customer = $this->generateIdCustomer();
+		$id_pegawai = $this->input->post('id_pegawai');
+		$id_status = 1;
+		$gambar = $nama_gambar;
+		$estimasi = $this->generateEstimasi();
+
+		$arr_transaksi = array(
+			'tanggal_masuk' => $tanggal_masuk,
+			'tanggal_keluar' => $tanggal_keluar,
+			'id_customer' => $id_customer,
+			'id_pegawai' => $id_pegawai,
+			'id_status' => $id_status,
+			'gambar' => $gambar,
+			'estimasi' => $estimasi
+		);
+		$insert_transaksi = $this->transaksi->insert($arr_transaksi);
+
+			//detail transaksi
+		$id_transaksi = $this->generateIdTransaksi();
+		$id_barang = $this->input->post('id_barang');
+		$jumlah_barang = $this->input->post('jumlah_barang');
+
+		for ($i = 0; $i < count($id_barang); $i++) {
+			$harga_satuan = $this->getHargaBarang($id_barang[$i]);
+			$harga_total = $jumlah_barang[$i] * $harga_satuan;
+
+			$arr_detail_transaksi = array(
+				'id_transaksi' => $id_transaksi,
+				'id_barang' => $id_barang[$i],
+				'jumlah_barang' => $jumlah_barang[$i],
+				'harga_total' => $harga_total,
+			);
+			$insert_detail_transaksi = $this->detail_transaksi->insert($arr_detail_transaksi);
+		}
+
+		if ($insert_customer) {
+			if ($insert_transaksi) {
+				if ($insert_detail_transaksi) {
+					$result = array(
+						'status' => 1,
+						'message' => "sukses",
+					);
+				}else {
+					$result = array(
+						'status' => 0,
+						'message' => "detail transaksi gagal",
+					);
+				}
+			}else {
+				$result = array(
+					'status' => 1,
+					'message' => "transaksi gagal",
+				);
+			}
+		}else {
+			$result = array(
+				'status' => 1,
+				'message' => "customer gagal",
+			);
+		}
+
+		echo json_encode($result);		
+
+	}
+
 
 	public function getHargaBarang($id)
 	{
@@ -239,6 +323,19 @@ class Transaksi extends CI_Controller {
 		}else {
 			return $id_customer;
 		}
+	}
+
+	public function generateEstimasi()
+	{
+		$tanggal = date("Y-m-d");
+		$jumlah_transaksi = 0;
+		$transaksi = $this->transaksi->getByDate($tanggal);
+		
+		foreach ($transaksi as $value) {
+			$jumlah_transaksi++;
+		}
+
+		echo json_encode($jumlah_transaksi); 
 	}
 
 	public function generateIdTransaksi()
@@ -275,6 +372,13 @@ class Transaksi extends CI_Controller {
 		$gambar = $transaksi[0]->gambar;
 		return $gambar;
 	}
+
+	public function getEstimasi($id_transaksi)
+	{
+		$transaksi = $this->transaksi->get($id_transaksi);
+		$estimasi = $transaksi[0]->estimasi;
+		return $estimasi;
+	}
 	
 	public function getTransaksiById($id_transaksi)
 	{
@@ -285,6 +389,7 @@ class Transaksi extends CI_Controller {
 				'message' => "sukses",
 				'total_harga' => $this->totalHargaTransaksi($id_transaksi),
 				'gambar' => base_url('uploads/'.$this->getGambar($id_transaksi)),
+				'estimasi' => $this->getEstimasi($id_transaksi),
 				'detail_customer' => $this->transaksi->viewCustomerByIdTransaksi($id_transaksi),
 				'detail_barang' => $query
 			);
@@ -294,6 +399,7 @@ class Transaksi extends CI_Controller {
 				'message' => "gagal",
 				'total_harga' => 0,
 				'gambar' => null,
+				'estimasi' => "",
 				'detail_customer' => array(),
 				'detail_barang' => array()
 			);
