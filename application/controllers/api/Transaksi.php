@@ -15,8 +15,8 @@ class Transaksi extends CI_Controller {
 	public function insertTransaksi()
 	{
 		$file_gambar = $this->input->post('gambar');
-		$nama_gambar = $this->generateIdTransaksi() + 1 +".jpg";
-		$upload_path = "./uploads/{$nama_gambar}";
+		$nama_gambar = $this->generateIdTransaksi() + 1;
+		$upload_path = "./uploads/{$nama_gambar}.jpg";
 
 		if ($file_gambar == "" || $file_gambar == null ) {
 			$result = array(
@@ -45,7 +45,7 @@ class Transaksi extends CI_Controller {
 			$id_customer = ($this->input->post("id_customer") == "" ? $this->generateIdCustomer() : $this->input->post("id_customer"));
 			$id_pegawai = $this->input->post('id_pegawai');
 			$id_status = 1;
-			$gambar = $nama_gambar;
+			$gambar = $nama_gambar + ".jpg";
 
 			$arr_transaksi = array(
 				'tanggal_masuk' => $tanggal_masuk,
