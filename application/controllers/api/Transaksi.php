@@ -15,8 +15,8 @@ class Transaksi extends CI_Controller {
 	public function insertTransaksi()
 	{
 		$file_gambar = $this->input->post('gambar');
-		$nama_gambar = $this->generateIdTransaksi() + 1;
-		$upload_path = "./uploads/{$nama_gambar}.jpg";
+		$nama_gambar = $this->generateIdTransaksi() + 1 +".jpg";
+		$upload_path = "./uploads/{$nama_gambar}";
 
 		if ($file_gambar == "" || $file_gambar == null ) {
 			$result = array(
