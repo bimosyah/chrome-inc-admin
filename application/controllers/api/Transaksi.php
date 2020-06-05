@@ -42,7 +42,7 @@ class Transaksi extends CI_Controller {
 			//data transaksi
 			$tanggal_masuk = date("Y-m-d");
 			$tanggal_keluar = date("Y-m-d");
-			$id_customer = $this->generateIdCustomer();
+			$id_customer = ($this->input->post("id_customer") == "" ? $this->generateIdCustomer() : $this->input->post("id_customer"));
 			$id_pegawai = $this->input->post('id_pegawai');
 			$id_status = 1;
 			$gambar = $nama_gambar;
@@ -65,14 +65,12 @@ class Transaksi extends CI_Controller {
 			for ($i = 0; $i < count($id_barang); $i++) {
 				$harga_satuan = $this->getHargaBarang($id_barang[$i]);
 				$harga_total = $jumlah_barang[$i] * $harga_satuan;
-				$estimasi = $this->input->post('estimasi');
 
 				$arr_detail_transaksi = array(
 					'id_transaksi' => $id_transaksi,
 					'id_barang' => $id_barang[$i],
 					'jumlah_barang' => $jumlah_barang[$i],
-					'harga_total' => $harga_total,
-					'estimasi' => $estimasi
+					'harga_total' => $harga_total
 				);
 				$insert_detail_transaksi = $this->detail_transaksi->insert($arr_detail_transaksi);
 			}
@@ -106,197 +104,6 @@ class Transaksi extends CI_Controller {
 
 		echo json_encode($result);		
 	}
-
-	public function insertTransaksi2()
-	{
-		$config['upload_path'] = './uploads/';
-		$config['allowed_types'] = 'jpg|png|jpeg';
-		$config['max_size']  = '1000';
-		$config['max_width']  = '1024';
-		$config['max_height']  = '768';
-		$config['encrypt_name'] = TRUE;
-
-		$this->load->library('upload', $config);
-		
-		if (!$this->upload->do_upload('user_file')){
-			$result = array(
-				'status' => 0,
-				'message' => "upload gagal ".$this->upload->display_errors(),
-			);
-		}
-		else{
-
-			$data_upload = $this->upload->data();
-			$nama_gambar = $data_upload['file_name'];
-
-			$insert_detail_transaksi = null;
-
-			//data customer
-			$nama_customer = $this->input->post('nama_customer');
-			$no_telp = $this->input->post('no_telp');
-			$alamat = $this->input->post('alamat');	
-
-			$arr_customer = array(
-				'nama_customer' => $nama_customer,
-				'no_telp' => $no_telp,
-				'alamat' => $alamat
-			);
-			$insert_customer = $this->customer->insert($arr_customer);
-
-			//data transaksi
-			$tanggal_masuk = date("Y-m-d");
-			$tanggal_keluar = date("Y-m-d");
-			$id_customer = $this->generateIdCustomer();
-			$id_pegawai = $this->input->post('id_pegawai');
-			$id_status = $this->input->post('id_status');
-			$gambar = $nama_gambar;
-
-			$arr_transaksi = array(
-				'tanggal_masuk' => $tanggal_masuk,
-				'tanggal_keluar' => $tanggal_keluar,
-				'id_customer' => $id_customer,
-				'id_pegawai' => $id_pegawai,
-				'id_status' => $id_status,
-				'gambar' => $gambar
-			);
-			$insert_transaksi = $this->transaksi->insert($arr_transaksi);
-
-			//detail transaksi
-			$id_transaksi = $this->generateIdTransaksi();
-			$id_barang = $this->input->post('id_barang');
-			$jumlah_barang = $this->input->post('jumlah_barang');
-
-			for ($i = 0; $i < count($id_barang); $i++) {
-				$harga_satuan = $this->getHargaBarang($id_barang[$i]);
-				$harga_total = $jumlah_barang[$i] * $harga_satuan;
-				$estimasi = $this->input->post('estimasi');
-
-				$arr_detail_transaksi = array(
-					'id_transaksi' => $id_transaksi,
-					'id_barang' => $id_barang[$i],
-					'jumlah_barang' => $jumlah_barang[$i],
-					'harga_total' => $harga_total,
-					'estimasi' => $estimasi
-				);
-				$insert_detail_transaksi = $this->detail_transaksi->insert($arr_detail_transaksi);
-			}
-
-			if ($insert_customer) {
-				if ($insert_transaksi) {
-					if ($insert_detail_transaksi) {
-						$result = array(
-							'status' => 1,
-							'message' => "sukses",
-						);
-					}else {
-						$result = array(
-							'status' => 0,
-							'message' => "detail transaksi gagal",
-						);
-					}
-				}else {
-					$result = array(
-						'status' => 1,
-						'message' => "transaksi gagal",
-					);
-				}
-			}else {
-				$result = array(
-					'status' => 1,
-					'message' => "customer gagal",
-				);
-			}
-		}
-
-		echo json_encode($result);		
-	}
-
-	public function insertTransaksi3()
-	{
-		$nama_gambar = "";
-
-		$insert_detail_transaksi = null;
-
-			//data customer
-		$nama_customer = $this->input->post('nama_customer');
-		$no_telp = $this->input->post('no_telp');
-		$alamat = $this->input->post('alamat');	
-
-		$arr_customer = array(
-			'nama_customer' => $nama_customer,
-			'no_telp' => $no_telp,
-			'alamat' => $alamat
-		);
-		$insert_customer = $this->customer->insert($arr_customer);
-
-			//data transaksi
-		$tanggal_masuk = date("Y-m-d");
-		$tanggal_keluar = date("Y-m-d");
-		$id_customer = $this->generateIdCustomer();
-		$id_pegawai = $this->input->post('id_pegawai');
-		$id_status = 1;
-		$gambar = $nama_gambar;
-		$estimasi = $this->generateEstimasi();
-
-		$arr_transaksi = array(
-			'tanggal_masuk' => $tanggal_masuk,
-			'tanggal_keluar' => $tanggal_keluar,
-			'id_customer' => $id_customer,
-			'id_pegawai' => $id_pegawai,
-			'id_status' => $id_status,
-			'gambar' => $gambar,
-			'estimasi' => $estimasi
-		);
-		$insert_transaksi = $this->transaksi->insert($arr_transaksi);
-
-			//detail transaksi
-		$id_transaksi = $this->generateIdTransaksi();
-		$id_barang = $this->input->post('id_barang');
-		$jumlah_barang = $this->input->post('jumlah_barang');
-
-		for ($i = 0; $i < count($id_barang); $i++) {
-			$harga_satuan = $this->getHargaBarang($id_barang[$i]);
-			$harga_total = $jumlah_barang[$i] * $harga_satuan;
-
-			$arr_detail_transaksi = array(
-				'id_transaksi' => $id_transaksi,
-				'id_barang' => $id_barang[$i],
-				'jumlah_barang' => $jumlah_barang[$i],
-				'harga_total' => $harga_total,
-			);
-			$insert_detail_transaksi = $this->detail_transaksi->insert($arr_detail_transaksi);
-		}
-
-		if ($insert_customer) {
-			if ($insert_transaksi) {
-				if ($insert_detail_transaksi) {
-					$result = array(
-						'status' => 1,
-						'message' => "sukses",
-					);
-				}else {
-					$result = array(
-						'status' => 0,
-						'message' => "detail transaksi gagal",
-					);
-				}
-			}else {
-				$result = array(
-					'status' => 1,
-					'message' => "transaksi gagal",
-				);
-			}
-		}else {
-			$result = array(
-				'status' => 1,
-				'message' => "customer gagal",
-			);
-		}
-
-		echo json_encode($result);		
-
-	}
-
 
 	public function getHargaBarang($id)
 	{
