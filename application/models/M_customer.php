@@ -36,6 +36,13 @@ class M_customer extends CI_Model {
 		return $query;
 	}
 
+	public function histori($id_customer)
+	{
+		$this->db->where('id_customer', $id_customer);
+		$query = $this->db->get('transaksi')->result();
+		return $query;
+	}
+
 }
 
 /* End of file M_customer.php */

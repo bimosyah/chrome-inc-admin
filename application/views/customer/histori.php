@@ -11,42 +11,42 @@
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>Id Transaksi</th>
-										<th>Customer</th>
 										<th>Tanggal Masuk</th>
-										<th>Pegawai</th>
+										<th>Tanggal Keluar</th>
 										<th>Status</th>
-										<th>Action</th>
+										<th>Detail transaksi</th>
 									</tr>
 								</thead>
 								<tbody>
-									<?php $i = 1 ?>
 									<?php 
-									foreach ($transaksi as $value): ?>
-
+									$no = 1;
+									$status = "";
+									$color = "";
+									foreach ($histori as $value): ?>
 										<?php 
-										$color = null;
-										if ($value->status == "Menunggu") {
+										if ($value->id_status == 1) {
 											$color = "#E30029";
-										}else if ($value->status == "Dikerjakan") {
+											$status = "Menunggu";
+										}else if ($value->id_status == 2) {
 											$color = "#FFF6AA";
+											$status = "Dikerjakan";
 										}else {
 											$color = "#0ACF83";
+											$status = "Selesai";
 										}
 										?>
 										<tr>
-											<td><?php echo $i?></td>
-											<td><?php echo $value->id_transaksi ?></td>
-											<td><?php echo $value->nama_customer ?></td>
-											<td><?php echo $value->tanggal_masuk ?></td>
-											<td><?php echo $value->nama_pegawai ?></td>
-											<td style="background: <?php echo $color ?>"><?php echo $value->status ?></td>
+											<td><?php echo $no?></td>
+											<td><?php echo $value->tanggal_masuk?></td>
+											<td><?php echo $value->tanggal_keluar ?></td>
+											<td style="background: <?php echo $color ?>"><?php echo $status ?></td>
 											<td>
 												<a href="<?php echo base_url("transaksi/detail/".$value->id_transaksi) ?>" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Detail</a>
 											</td>
 										</tr>
-										<?php $i++ ?>
-									<?php endforeach;?>
+										<?php 
+										$no++;
+									endforeach;?>
 
 								</tbody>
 							</table>

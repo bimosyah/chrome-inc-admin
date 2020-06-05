@@ -74,6 +74,8 @@ $route['barang/update/(:any)'] = 'C_barang/update/$1';
 $route['barang/cek/(:any)'] = 'C_barang/cek/$1';
 
 $route['customer'] = 'C_customer';
+$route['customer/histori/(:any)'] = 'C_customer/histori/$1';
+
 
 $route['inventory'] = 'C_inventory';
 $route['inventory/insert'] = 'C_inventory/insert';

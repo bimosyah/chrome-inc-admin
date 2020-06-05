@@ -15,6 +15,13 @@ class C_customer extends CI_Controller {
 		$this->load->view('customer/index',$data);
 	}
 
+	public function histori($id_customer)
+	{
+		$data['histori'] = $this->customer->histori($id_customer);
+		$this->load->view('customer/histori',$data);
+
+	}
+
 }
 
 /* End of file C_customer.php */

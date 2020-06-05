@@ -14,6 +14,7 @@
 										<th>Nama</th>
 										<th>No Telp</th>
 										<th>Alamat</th>
+										<th>Histori transaksi</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -25,6 +26,9 @@
 											<td><?php echo $value->nama_customer?></td>
 											<td><?php echo $value->no_telp ?></td>
 											<td><?php echo $value->alamat ?></td>
+											<td>
+												<a href="<?php echo base_url("customer/histori/".$value->id_customer) ?>" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Detail</a>
+											</td>
 										</tr>
 									<?php 
 									$no++;
