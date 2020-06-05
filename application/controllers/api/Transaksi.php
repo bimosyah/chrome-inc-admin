@@ -45,7 +45,7 @@ class Transaksi extends CI_Controller {
 			$id_customer = ($this->input->post("id_customer") == "" ? $this->generateIdCustomer() : $this->input->post("id_customer"));
 			$id_pegawai = $this->input->post('id_pegawai');
 			$id_status = 1;
-			$gambar = $nama_gambar + ".jpg";
+			$gambar = $nama_gambar.".jpg";
 
 			$arr_transaksi = array(
 				'tanggal_masuk' => $tanggal_masuk,
