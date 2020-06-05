@@ -47,7 +47,7 @@ class M_transaksi extends CI_Model {
 
 	public function viewTransaksi()
 	{
-		$query = $this->db->get('view_transaksi')->result();
+		$query = $this->db->query("select transaksi.id_transaksi AS id_transaksi,transaksi.tanggal_masuk AS tanggal_masuk,transaksi.tanggal_keluar AS tanggal_keluar,customer.nama_customer AS nama_customer,pegawai.nama_pegawai AS nama_pegawai,status.nama_status AS status,transaksi.gambar AS gambar,transaksi.estimasi AS estimasi from (((transaksi join customer on((transaksi.id_customer = customer.id_customer))) join pegawai on((transaksi.id_pegawai = pegawai.id_pegawai))) join status on((transaksi.id_status = status.id_status))) order by transaksi.id_transaksi desc")->result();
 		return $query;
 	}
 
