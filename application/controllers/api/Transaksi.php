@@ -42,7 +42,7 @@ class Transaksi extends CI_Controller {
 			//data transaksi
 			$tanggal_masuk = date("Y-m-d");
 			$tanggal_keluar = date("Y-m-d");
-			$id_customer = ($this->input->post("id_customer") == "" ? $this->generateIdCustomer() : $this->input->post("id_customer"));
+			$id_customer = ($this->input->post("id_customer") != "" ? $this->input->post("id_customer") : $this->generateIdCustomer());
 			$id_pegawai = $this->input->post('id_pegawai');
 			$id_status = 1;
 			$gambar = $nama_gambar.".jpg";
