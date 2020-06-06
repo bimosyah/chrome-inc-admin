@@ -118,7 +118,8 @@ class Transaksi extends CI_Controller {
 			}
 		}
 
-		echo json_encode($result);		
+		echo json_encode($result);	
+		echo json_encode($id_customer);	
 	}
 
 	public function getHargaBarang($id)
