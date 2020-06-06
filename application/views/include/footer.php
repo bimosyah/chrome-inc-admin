@@ -78,8 +78,17 @@
     var channel = pusher.subscribe('my-channel');
     channel.bind('my-event', function(data) {
       if(data.from === 'transaksi'){
-          alert("transaksi baru");
+        jumlah_notif_transaksi += 1;
+      }else {
+        // alert("transaksi baru");
+        jumlah_notif_reqbarang += 1;
       }
+
+      jumlah_notif = jumlah_notif_transaksi + jumlah_notif_reqbarang;
+      document.getElementById("jumlah_notifikasi").innerHTML = jumlah_notif;
+      document.getElementById("jumlah_notifikasi_transaksi").innerHTML = "<i class='fas fa-envelope mr-2'></i>" + jumlah_notif_transaksi + " transaksi baru";
+      document.getElementById("jumlah_notifikasi_request").innerHTML = "<i class='fas fa-envelope mr-2'></i>" + jumlah_notif_reqbarang + " request barang baru";
+
     });
 
 

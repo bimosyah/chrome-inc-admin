@@ -53,12 +53,12 @@
             <span id="jumlah_notifikasi" class="badge badge-warning navbar-badge">0</span>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> x new messages
+            <a href="#" class="dropdown-item" id="jumlah_notifikasi_transaksi">
+              <i class="fas fa-envelope mr-2"></i> 0 transaksi baru
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-file mr-2"></i> x new reports
+            <a href="#" class="dropdown-item" id="jumlah_notifikasi_request">
+              <i class="fas fa-file mr-2"></i> 0 request barang baru
             </a>
         </li>
       </ul>
