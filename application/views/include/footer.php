@@ -63,9 +63,9 @@
     $('#datatable').DataTable();
   });
 
-    var jumlah_notif_transaksi = 0;
-    var jumlah_notif_reqbarang = 0;
-    var jumlah_notif = 0;
+  var jumlah_notif_transaksi = 0;
+  var jumlah_notif_reqbarang = 0;
+  var jumlah_notif = 0;
 
 
     // Enable pusher logging - don't include this in production
@@ -77,8 +77,9 @@
 
     var channel = pusher.subscribe('my-channel');
     channel.bind('my-event', function(data) {
-      alert(JSON.stringify(data));
-      jumlah_notif_transaksi += 1;
+      if(data.from === 'transaksi'){
+          alert("transaksi baru");
+      }
     });
 
 
