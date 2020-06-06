@@ -94,7 +94,7 @@ class Transaksi extends CI_Controller {
 							$options
 						);
 
-						$data['message'] = 'hello world';
+						$data['message'] = 'sukses';
 						$pusher->trigger('my-channel', 'my-event', $data);
 
 					}else {

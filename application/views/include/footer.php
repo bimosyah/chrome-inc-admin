@@ -63,6 +63,11 @@
     $('#datatable').DataTable();
   });
 
+    var jumlah_notif_transaksi = 0;
+    var jumlah_notif_reqbarang = 0;
+    var jumlah_notif = 0;
+
+
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
@@ -73,9 +78,14 @@
     var channel = pusher.subscribe('my-channel');
     channel.bind('my-event', function(data) {
       alert(JSON.stringify(data));
+      jumlah_notif_transaksi += 1;
     });
 
-    
+
+    function notif(){
+      jumlah_notif_transaksi = 0;
+    }
+
     function hitung_total() {
       var elements = document.getElementById("form_barang").elements;
       var obj ={};
