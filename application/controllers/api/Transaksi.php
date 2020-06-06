@@ -32,12 +32,17 @@ class Transaksi extends CI_Controller {
 			$no_telp = $this->input->post('no_telp');
 			$alamat = $this->input->post('alamat');	
 
-			$arr_customer = array(
-				'nama_customer' => $nama_customer,
-				'no_telp' => $no_telp,
-				'alamat' => $alamat
-			);
-			$insert_customer = $this->customer->insert($arr_customer);
+			$id_customer = $this->input->post("id_customer");
+
+			if ($id_customer == "") {
+				$arr_customer = array(
+					'nama_customer' => $nama_customer,
+					'no_telp' => $no_telp,
+					'alamat' => $alamat
+				);
+
+				$insert_customer = $this->customer->insert($arr_customer);
+			}
 
 			//data transaksi
 			$tanggal_masuk = date("Y-m-d");
