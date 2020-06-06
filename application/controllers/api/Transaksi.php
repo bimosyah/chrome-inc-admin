@@ -17,7 +17,7 @@ class Transaksi extends CI_Controller {
 		$file_gambar = $this->input->post('gambar');
 		$nama_gambar = $this->generateIdTransaksi() + 1;
 		$upload_path = "./uploads/{$nama_gambar}.jpg";
-
+		$id_customer = "";
 		if ($file_gambar == "" || $file_gambar == null ) {
 			$result = array(
 				'status' => 0,
