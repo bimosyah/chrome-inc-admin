@@ -25,7 +25,9 @@ class Transaksi extends CI_Controller {
 			);
 		}else {
 			file_put_contents($upload_path, base64_decode($file_gambar));
+			
 			$insert_detail_transaksi = null;
+			$insert_customer = null;
 
 			//data customer
 			$nama_customer = $this->input->post('nama_customer');
