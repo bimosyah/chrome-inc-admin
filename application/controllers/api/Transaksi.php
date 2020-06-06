@@ -82,6 +82,21 @@ class Transaksi extends CI_Controller {
 							'status' => 1,
 							'message' => "sukses",
 						);
+						require_once(APPPATH.'views/vendor/autoload.php');
+						$options = array(
+							'cluster' => 'ap1',
+							'useTLS' => true
+						);
+						$pusher = new Pusher\Pusher(
+							'fbe5e22f9f78edda72c3',
+							'f8cc57c1d3dbcfc9525f',
+							'1014149',
+							$options
+						);
+
+						$data['message'] = 'hello world';
+						$pusher->trigger('my-channel', 'my-event', $data);
+
 					}else {
 						$result = array(
 							'status' => 0,

@@ -55,29 +55,44 @@
 <!-- DataTables -->
 <script src="<?php echo base_url("assets/plugins/datatables/jquery.dataTables.js") ?>"></script>
 <script src="<?php echo base_url("assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js") ?>"></script>
+<!-- Pusher -->
+<script src="https://js.pusher.com/6.0/pusher.min.js"></script>
 
 <script>
   $(function () {
     $('#datatable').DataTable();
   });
 
-  function hitung_total() {
-    var elements = document.getElementById("form_barang").elements;
-    var obj ={};
-    var total_barang = 0;
-    for(var i = 0 ; i < elements.length ; i++){
-      var item = elements.item(i);
-      obj[item.name] = item.value;
-      if (item.type == "number") {
-        total_barang = total_barang + Number(item.value);
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
 
+    var pusher = new Pusher('fbe5e22f9f78edda72c3', {
+      cluster: 'ap1'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(JSON.stringify(data));
+    });
+
+    
+    function hitung_total() {
+      var elements = document.getElementById("form_barang").elements;
+      var obj ={};
+      var total_barang = 0;
+      for(var i = 0 ; i < elements.length ; i++){
+        var item = elements.item(i);
+        obj[item.name] = item.value;
+        if (item.type == "number") {
+          total_barang = total_barang + Number(item.value);
+
+        }
       }
+      document.getElementById("text_total_harga").innerHTML = "Rp. " + total_barang;
+      document.getElementById("total_harga").value = total_barang;
+      $('html, body').animate({scrollTop: '0px'}, 0);
     }
-    document.getElementById("text_total_harga").innerHTML = "Rp. " + total_barang;
-    document.getElementById("total_harga").value = total_barang;
-    $('html, body').animate({scrollTop: '0px'}, 0);
-  }
 
-</script>
+  </script>
 </body>
 </html>
