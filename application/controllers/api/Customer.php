@@ -22,8 +22,8 @@ class Customer extends CI_Controller {
 			);
 		}else {
 			$result = array(
-				'status' => 1,
-				'message' => "sukses",
+				'status' => 0,
+				'message' => "gagal",
 				'data_customer' => array()
 			);
 		}
