@@ -18,6 +18,10 @@ class Transaksi extends CI_Controller {
 		$nama_gambar = $this->generateIdTransaksi() + 1;
 		$upload_path = "./uploads/{$nama_gambar}.jpg";
 
+
+		$insert_detail_transaksi = null;
+		$insert_customer = true;
+
 		if ($file_gambar == "" || $file_gambar == null ) {
 			$result = array(
 				'status' => 0,
@@ -26,8 +30,6 @@ class Transaksi extends CI_Controller {
 		}else {
 			file_put_contents($upload_path, base64_decode($file_gambar));
 			
-			$insert_detail_transaksi = null;
-			$insert_customer = null;
 
 			//data customer
 			$nama_customer = $this->input->post('nama_customer');
@@ -113,13 +115,13 @@ class Transaksi extends CI_Controller {
 					}
 				}else {
 					$result = array(
-						'status' => 1,
+						'status' => 0,
 						'message' => "transaksi gagal",
 					);
 				}
 			}else {
 				$result = array(
-					'status' => 1,
+					'status' => 0,
 					'message' => "customer gagal",
 				);
 			}
