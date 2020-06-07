@@ -20,11 +20,13 @@ class Login extends CI_Controller {
 		if($query){
 			foreach ($query as $key => $value) {
 				$nama = $value->nama_pegawai;
+				$id_pegawai = $value->id_pegawai;
 			}
 			$result = array(
 				'status' => 1,
 				'message' => "sukses",
 				'pegawai' => array(
+					'id_pegawai' => $id_pegawai,
 					'nama_pegawai' => $nama
 				)
 			);
@@ -33,9 +35,7 @@ class Login extends CI_Controller {
 			$result = array(
 				'status' => 0,
 				'message' => "gagal",
-				'pegawai' => array(
-					'nama_pegawai' => ""
-				)
+				'pegawai' => array()
 			);
 			echo json_encode($result);
 		}
