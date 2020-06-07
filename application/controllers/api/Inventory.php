@@ -62,6 +62,28 @@ class Inventory extends CI_Controller {
 
 	}
 
+	public function daftartInventory()
+	{
+		$result = array();
+		$data = $this->inventory->get();
+		
+		if ($data) {
+			$result = array(
+				'status' => 1,
+				'message' => "berhasil",
+				'inventory' => $data
+			);
+		}else {
+			$result = array(
+				'status' => 0,
+				'message' => "gagal",
+				'inventory' => array()
+			);
+		}
+
+		echo json_encode($result);
+	}
+
 }
 
 /* End of file Inventory.php */
