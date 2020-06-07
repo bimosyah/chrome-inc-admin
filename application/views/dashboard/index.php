@@ -66,7 +66,7 @@
 				<!-- ./col -->
 			</div>
 			<div class="card">
-				<div class="card-header ui-sortable-handle" style="cursor: move;">
+				<div class="card-header" style="cursor: move;">
 					<h3 class="card-title">
 						<i class="fas fa-chart-pie mr-1"></i>
 						Grafik Omset Per Hari
