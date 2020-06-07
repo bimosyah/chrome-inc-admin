@@ -6,8 +6,7 @@ class Inventory extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('M_pegawai', 'M_barang', 'M_inventory');
-		$this->load->model('M_transaksi', 'transaksi');
+		$this->load->model('M_inventory', 'inventory');
 	}
 
 	public function insertInventory()
@@ -15,47 +14,35 @@ class Inventory extends CI_Controller {
 
 		$result = array();
 
-		$no_inv = $this->input->post('no_inv');
 		$nama_inv = $this->input->post('nama_inv');
 		$jumlah = $this->input->post('jumlah');
 		$satuan = $this->input->post('satuan');
 		$harga_beli = $this->input->post('harga_beli');
 		$keterangan = $this->input->post('keterangan');
 
+		$object = array(
+			'nama_inv' => $nama_inv,
+			'jumlah' => $jumlah,
+			'satuan' => $satuan,
+			'harga_beli' => $harga_beli,
+			'keterangan' => $keterangan
+		);
 
-		if ($no_inv != "" || $nama_inv != "" || $jumlah != "" || $satuan != "" || $harga_beli != "" || $keterangan != "") {
+		$query = $this->inventory->insert($object);
 
-			$object = array(
-				'no_inv' => $no_inv,
-				'nama_inv' => $nama_inv,
-				'jumlah' => $jumlah,
-				'satuan' => $satuan,
-				'harga_beli' => $harga_beli,
-				'keterangan' => $keterangan
+		if ($query) {				
+			$result = array(
+				'status' => 1,
+				'message' => "sukses"
 			);
-
-			$query = $this->M_inventory->insert($object);
-
-			if ($query) {				
-				$result = array(
-					'status' => 1,
-					'message' => "sukses"
-				);
-				echo json_encode($result);
-			}else {
-				$result = array(
-					'status' => 0,
-					'message' => "gagal"
-				);
-				echo json_encode($result);
-			}
 		}else {
 			$result = array(
 				'status' => 0,
-				'message' => "data_kosong"
+				'message' => "gagal"
 			);
-			echo json_encode($result);
-		}	
+		}
+		echo json_encode($result);
+
 	}
 
 }
