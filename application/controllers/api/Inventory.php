@@ -30,7 +30,24 @@ class Inventory extends CI_Controller {
 
 		$query = $this->inventory->insert($object);
 
-		if ($query) {				
+		if ($query) {	
+
+			require_once(APPPATH.'views/vendor/autoload.php');
+			$options = array(
+				'cluster' => 'ap1',
+				'useTLS' => true
+			);
+			$pusher = new Pusher\Pusher(
+				'fbe5e22f9f78edda72c3',
+				'f8cc57c1d3dbcfc9525f',
+				'1014149',
+				$options
+			);
+
+			$data['message'] = 'sukses';
+			$data['from'] = 'inventory';
+			$pusher->trigger('my-channel', 'my-event', $data);
+			
 			$result = array(
 				'status' => 1,
 				'message' => "sukses"
