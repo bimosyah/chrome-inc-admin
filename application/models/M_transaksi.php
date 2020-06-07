@@ -21,6 +21,13 @@ class M_transaksi extends CI_Model {
 		return $query;
 	}
 
+	public function getByStatus($id_status)
+	{
+		$this->db->where('id_status', $id_status);
+		$query = $this->db->get('transaksi')->result();	
+		return $query;
+	}
+
 	public function getBydate($date)
 	{
 		$this->db->where('tanggal_masuk', $date);
@@ -76,6 +83,13 @@ class M_transaksi extends CI_Model {
 		$this->db->where('id_transaksi', $id_transaksi);
 		$query = $this->db->update('transaksi', $object);
 		return $query;
+	}
+
+	public function omsetHarian()
+	{
+		$result = $this->db->query("SELECT transaksi.tanggal_masuk as tanggal, SUM(barang.omset_pabrik) as omset_per_hari FROM transaksi JOIN detail_transaksi on transaksi.id_transaksi = detail_transaksi.id_transaksi JOIN barang ON barang.id_barang = detail_transaksi.id_barang GROUP BY transaksi.tanggal_masuk")->result();
+
+		return $result;
 	}
 
 }

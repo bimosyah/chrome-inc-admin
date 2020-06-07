@@ -19,39 +19,12 @@
 <script src="<?php echo base_url('assets/plugins/jquery/jquery.min.js') ?>"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?php echo base_url('assets/plugins/jquery-ui/jquery-ui.min.js') ?>"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 <!-- ChartJS -->
 <script src="<?php echo base_url('assets/plugins/chart.js/Chart.min.js') ?>"></script>
-<!-- Sparkline -->
-<script src="<?php echo base_url('assets/plugins/sparklines/sparkline.js') ?>"></script>
-<!-- JQVMap -->
-<script src="<?php echo base_url('assets/plugins/jqvmap/jquery.vmap.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') ?>"></script>
-<!-- jQuery Knob Chart -->
-<script src="<?php echo base_url('assets/plugins/jquery-knob/jquery.knob.min.js') ?>"></script>
-<!-- daterangepicker -->
-<script src="<?php echo base_url('assets/plugins/moment/moment.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/plugins/daterangepicker/daterangepicker.js') ?>"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="<?php echo base_url('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') ?>"></script>
-<!-- Summernote -->
-<script src="<?php echo base_url('assets/plugins/summernote/summernote-bs4.min.js') ?>"></script>
-<!-- overlayScrollbars -->
-<script src="<?php echo base_url('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') ?>"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url('assets/dist/js/adminlte.js') ?>"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<!-- <script src="<?php echo base_url('assets/dist/js/pages/dashboard.js') ?>"></script> -->
-<!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url('assets/dist/js/demo.js') ?>"></script>
-<!-- jsGrid -->
-<script src="<?php echo base_url('assets/plugins/jsgrid/demos/db.js') ?>"></script>
-<script src="<?php echo base_url('assets/plugins/jsgrid/jsgrid.min.js') ?>"></script>
 <!-- DataTables -->
 <script src="<?php echo base_url("assets/plugins/datatables/jquery.dataTables.js") ?>"></script>
 <script src="<?php echo base_url("assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js") ?>"></script>
@@ -66,6 +39,56 @@
   var jumlah_notif_transaksi = 0;
   var jumlah_notif_reqbarang = 0;
   var jumlah_notif = 0;
+
+  var config = {
+    type: 'line',
+    data: {
+      labels: <?php echo (!isset($chart_label) ? "[]" : json_encode($chart_label)) ?>,
+      datasets: [{
+        label: 'Omset',
+        backgroundColor: 'rgb(255, 102, 102)',
+        borderColor: 'rgb(255, 102, 102)',
+        data: <?php echo (!isset($chart_data) ? "[]" : json_encode($chart_data)) ?>,
+        fill: false,
+      }]
+    },
+    options: {
+      responsive: true,
+      title: {
+        display: true,
+        text: 'Omset Per Hari'
+      },
+      tooltips: {
+        mode: 'index',
+        intersect: false,
+      },
+      hover: {
+        mode: 'nearest',
+        intersect: true
+      },
+      scales: {
+        xAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Tanggal'
+          }
+        }],
+        yAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Value'
+          }
+        }]
+      }
+    }
+  };
+
+  window.onload = function() {
+    var ctx = document.getElementById('canvas').getContext('2d');
+    window.myLine = new Chart(ctx, config);
+  };
 
 
     // Enable pusher logging - don't include this in production
