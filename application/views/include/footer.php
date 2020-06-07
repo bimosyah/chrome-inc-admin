@@ -117,6 +117,8 @@
 
     function notif(){
       jumlah_notif_transaksi = 0;
+      jumlah_notif_reqbarang = 0;
+      jumlah_notif = 0;
     }
 
     function hitung_total() {
