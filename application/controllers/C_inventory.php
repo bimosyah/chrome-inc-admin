@@ -75,6 +75,21 @@ class C_inventory extends CI_Controller {
 		}
 	}
 
+	public function updateStatus($id)
+	{
+		
+		$object = array(
+			'status' => 1
+		);
+
+
+		// echo json_encode($object);
+		$update = $this->inventory->update($id,$object);
+		if ($update) {
+			redirect('inventory','refresh');
+		}
+	}
+
 	public function delete($id)
 	{
 		$delete = $this->inventory->delete($id);
