@@ -7,10 +7,14 @@ class C_pegawai extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_pegawai','pegawai');
+		if (!isset($_SESSION['logged_in'])) {
+			redirect('login','refresh');
+		}
 	}
 
 	public function index()
 	{
+
 		$data['pegawai'] = $this->pegawai->get();
 		$this->load->view('pegawai/index',$data);
 	}

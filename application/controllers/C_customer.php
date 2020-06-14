@@ -7,12 +7,20 @@ class C_customer extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_customer','customer');
+		if (!isset($_SESSION['logged_in'])) {
+			redirect('login','refresh');
+		}
 	}
 
 	public function index()
 	{
+		if (!isset($_SESSION['logged_in'])) {
+			redirect('login','refresh');
+		}
+
 		$data['customer'] = $this->customer->get();
 		$this->load->view('customer/index',$data);
+
 	}
 
 	public function histori($id_customer)

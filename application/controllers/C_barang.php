@@ -7,10 +7,16 @@ class C_barang extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_barang','barang');
+		if (!isset($_SESSION['logged_in'])) {
+			redirect('login','refresh');
+		}
 	}
 
 	public function index()
 	{
+		if (!isset($_SESSION['logged_in'])) {
+			redirect('login','refresh');
+		}
 		$data['barang'] = $this->barang->get();
 		$this->load->view('barang/index',$data);
 	}

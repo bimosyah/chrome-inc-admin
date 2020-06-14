@@ -7,10 +7,17 @@ class C_dashboard extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_transaksi','transaksi');
+		if (!isset($_SESSION['logged_in'])) {
+			redirect('login','refresh');
+		}
 	}
 
 	public function index()
 	{
+		if (!isset($_SESSION['logged_in'])) {
+			redirect('login','refresh');
+		}
+
 		$data['jumlahTransaksi'] = $this->getJumlahTransaksi();
 		$data['jumlah_selesai'] = $this->getJumlahTransaksiByStatus(3);
 		$data['jumlah_dikerjakan'] = $this->getJumlahTransaksiByStatus(2);

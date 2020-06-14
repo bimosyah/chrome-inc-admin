@@ -7,6 +7,9 @@ class C_transaksi extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_transaksi','transaksi');
+		if (!isset($_SESSION['logged_in'])) {
+			redirect('login','refresh');
+		}
 	}
 
 	public function index()

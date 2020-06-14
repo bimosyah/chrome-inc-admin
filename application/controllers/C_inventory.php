@@ -7,10 +7,15 @@ class C_inventory extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_inventory','inventory');
+		if (!isset($_SESSION['logged_in'])) {
+			redirect('login','refresh');
+		}
 	}
 
 	public function index()
 	{
+		
+
 		$data['inventory'] = $this->inventory->get();
 		$this->load->view('inventory/index',$data);
 	}
