@@ -62,7 +62,8 @@ class Transaksi extends CI_Controller {
 				'id_customer' => $id_customer,
 				'id_pegawai' => $id_pegawai,
 				'id_status' => $id_status,
-				'gambar' => $gambar
+				'gambar' => $gambar,
+				'estimasi' => 4
 			);
 			$insert_transaksi = $this->transaksi->insert($arr_transaksi);
 
