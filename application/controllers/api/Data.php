@@ -11,6 +11,7 @@ class Data extends CI_Controller {
 
 	public function dashboard()
 	{
+
 		$jumlah_transaksi= $this->getJumlahTransaksi();
 		$jumlah_selesai = $this->getJumlahTransaksiByStatus(3);
 		$jumlah_dikerjakan = $this->getJumlahTransaksiByStatus(2);
@@ -24,6 +25,30 @@ class Data extends CI_Controller {
 		);
 
 		echo json_encode($data);
+	}
+
+	public function omsetHarian()
+	{
+		$data['chart_data'] = array();
+		$data['chart_label'] = array();
+		$data = array();
+
+		foreach ($this->transaksi->omsetHarian() as $value) {
+			$temp = array(
+				'tanggal' => $value->tanggal,
+				'jumlah' => $value->omset_per_hari
+			);			
+			array_push($data, $temp);
+		}
+
+		$result = array(
+			'status' => 1,
+			'message' => "sukses",
+			'omset' => $data
+		);
+
+		echo json_encode($result);
+
 	}
 
 	public function getJumlahTransaksi()
