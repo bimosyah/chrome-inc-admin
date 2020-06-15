@@ -27,6 +27,29 @@ class Data extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function transaksiHarian()
+	{
+		$data['chart_data'] = array();
+		$data['chart_label'] = array();
+		$data = array();
+
+		foreach ($this->transaksi->transaksiHarian() as $value) {
+			$temp = array(
+				'tanggal' => $value->tanggal,
+				'jumlah' => $value->jumlah_transaksi
+			);			
+			array_push($data, $temp);
+		}
+
+		$result = array(
+			'status' => 1,
+			'message' => "sukses",
+			'transaksi' => $data
+		);
+
+		echo json_encode($result);
+	}
+
 	public function omsetHarian()
 	{
 		$data['chart_data'] = array();
@@ -48,7 +71,6 @@ class Data extends CI_Controller {
 		);
 
 		echo json_encode($result);
-
 	}
 
 	public function getJumlahTransaksi()
@@ -62,6 +84,8 @@ class Data extends CI_Controller {
 		$jumlah = $this->transaksi->getByStatus($id_status);
 		return count($jumlah);
 	}
+
+
 
 
 

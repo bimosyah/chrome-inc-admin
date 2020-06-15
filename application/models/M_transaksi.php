@@ -92,6 +92,14 @@ class M_transaksi extends CI_Model {
 		return $result;
 	}
 
+	public function transaksiHarian()
+	{
+		$result = $this->db->query("SELECT COUNT(transaksi.id_transaksi) AS jumlah_transaksi , tanggal_masuk as tanggal
+			FROM transaksi GROUP BY tanggal_masuk ORDER BY tanggal_masuk ASC")->result();
+
+		return $result;
+	}
+
 }
 
 /* End of file M_transaksi.php */
