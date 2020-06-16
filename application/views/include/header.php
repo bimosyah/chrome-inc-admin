@@ -54,11 +54,14 @@
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <a href="<?php echo base_url("transaksi") ?>" class="dropdown-item" id="jumlah_notifikasi_transaksi">
-              <i class="fas fa-envelope mr-2"></i> 0 transaksi baru
+              <i class="fas fa-file mr-2"></i> 0 transaksi baru
             </a>
             <div class="dropdown-divider"></div>
             <a href="<?php echo base_url("inventory") ?>" class="dropdown-item" id="jumlah_notifikasi_request">
               <i class="fas fa-file mr-2"></i> 0 request barang baru
+            </a>
+            <a href="<?php echo base_url("pesan") ?>" class="dropdown-item" id="jumlah_notifikasi_pesan">
+              <i class="fas fa-envelope mr-2"></i> 0 pesan baru
             </a>
         </li>
       </ul>

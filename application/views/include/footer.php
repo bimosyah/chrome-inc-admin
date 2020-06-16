@@ -37,6 +37,7 @@
   });
 
   var jumlah_notif_transaksi = 0;
+  var jumlah_notif_pesan = 0;
   var jumlah_notif_reqbarang = 0;
   var jumlah_notif = 0;
 
@@ -102,15 +103,17 @@
     channel.bind('my-event', function(data) {
       if(data.from === 'transaksi'){
         jumlah_notif_transaksi += 1;
-      }else {
-        // alert("transaksi baru");
+      }else if (data.from === 'inventory'){
         jumlah_notif_reqbarang += 1;
+      }else {
+        jumlah_notif_pesan += 1;
       }
 
-      jumlah_notif = jumlah_notif_transaksi + jumlah_notif_reqbarang;
+      jumlah_notif = jumlah_notif_transaksi + jumlah_notif_reqbarang + jumlah_notif_pesan;
       document.getElementById("jumlah_notifikasi").innerHTML = jumlah_notif;
-      document.getElementById("jumlah_notifikasi_transaksi").innerHTML = "<i class='fas fa-envelope mr-2'></i>" + jumlah_notif_transaksi + " transaksi baru";
-      document.getElementById("jumlah_notifikasi_request").innerHTML = "<i class='fas fa-envelope mr-2'></i>" + jumlah_notif_reqbarang + " request barang baru";
+      document.getElementById("jumlah_notifikasi_transaksi").innerHTML = "<i class='fas fa-file mr-2'></i>" + jumlah_notif_transaksi + " transaksi baru";
+      document.getElementById("jumlah_notifikasi_request").innerHTML = "<i class='fas fa-file mr-2'></i>" + jumlah_notif_reqbarang + " request barang baru";
+      document.getElementById("jumlah_notifikasi_pesan").innerHTML = "<i class='fas fa-envelope mr-2'></i>" + jumlah_notif_pesan + " pesan baru";
 
     });
 

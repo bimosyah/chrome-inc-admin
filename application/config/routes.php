@@ -92,3 +92,6 @@ $route['inventory/update-status/(:any)'] = 'C_inventory/updateStatus/$1';
 
 $route['transaksi'] = 'C_transaksi';
 $route['transaksi/detail/(:any)'] = 'C_transaksi/detail/$1';
+
+$route['pesan'] = 'C_chat';
+$route['pesan/insert'] = 'C_chat/insert';
