@@ -89,7 +89,7 @@ class Transaksi extends CI_Controller {
 				if ($insert_transaksi) {
 					if ($insert_detail_transaksi) {
 						$result = array(
-							'id_transaksi' => id_transaksi,
+							'id_transaksi' => $id_transaksi,
 							'status' => 1,
 							'message' => "sukses",
 						);
