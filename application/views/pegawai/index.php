@@ -10,6 +10,7 @@
 							<table id="datatable" class="table table-bordered table-hover">
 								<thead>
 									<tr>
+										<th>No</th>
 										<th>Nama</th>
 										<th>Jabatan</th>
 										<th>Username</th>
@@ -20,8 +21,10 @@
 								</thead>
 								<tbody>
 									<?php 
+									$no = 1;
 									foreach ($pegawai as $value): ?>
 										<tr>
+											<td><?php echo $no?></td>
 											<td><?php echo $value->nama_pegawai?></td>
 											<td><?php echo $value->jabatan ?></td>
 											<td><?php echo $value->username ?></td>
@@ -32,7 +35,9 @@
 												<a href="<?php echo base_url("pegawai/delete/{$value->id_pegawai}") ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</a>
 											</td>
 										</tr>
-									<?php endforeach;?>
+										<?php 
+										$no++;
+									endforeach;?>
 
 								</tbody>
 							</table>

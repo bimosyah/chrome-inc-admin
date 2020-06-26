@@ -13,7 +13,7 @@
 										<th>No</th>
 										<th>Kode Barang</th>
 										<th>Nama Barang</th>
-										<th>Total Harga</th>
+										<th>Total Harga Jasa</th>
 										<th>Action</th>
 									</tr>
 								</thead>

@@ -58,7 +58,7 @@
             </a>
             <div class="dropdown-divider"></div>
             <a href="<?php echo base_url("inventory") ?>" class="dropdown-item" id="jumlah_notifikasi_request">
-              <i class="fas fa-file mr-2"></i> 0 request barang baru
+              <i class="fas fa-file mr-2"></i> 0 request bahan baku
             </a>
             <a href="<?php echo base_url("pesan") ?>" class="dropdown-item" id="jumlah_notifikasi_pesan">
               <i class="fas fa-envelope mr-2"></i> 0 pesan baru
