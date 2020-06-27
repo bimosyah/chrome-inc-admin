@@ -87,7 +87,8 @@ class Transaksi extends CI_Controller {
 					'id_transaksi' => $id_transaksi,
 					'id_barang' => $id_barang[$i],
 					'jumlah_barang' => $jumlah_barang[$i],
-					'harga_total' => $harga_total
+					'harga_total' => $harga_total,
+					'estimasi' => date('Y-m-d', strtotime($tanggal_masuk. ' + 4 days'))
 				);
 				$insert_detail_transaksi = $this->detail_transaksi->insert($arr_detail_transaksi);
 			}
