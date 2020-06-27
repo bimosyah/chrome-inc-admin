@@ -39,7 +39,7 @@
 							<div class="form-group row">
 								<label for="no_telp" class="col-sm-2 col-form-label">No Telp</label>
 								<div class="col-sm-10">
-									<input type="number" class="form-control" name="no_telp" id="no_telp"
+									<input type="number" class="form-control" name="no_telp" id="no_telp" min="0" max="99999999999999999999"
 									value="<?php echo (isset($pegawai[0]->no_telp) ? $pegawai[0]->no_telp : "") ?>">
 								</div>
 							</div>
