@@ -12,6 +12,13 @@ class Transaksi extends CI_Controller {
 		$this->load->model('M_detail_transaksi','detail_transaksi');
 	}
 
+	public function tes()
+	{
+		$Date = date("Y-m-d");
+		echo date('Y-m-d', strtotime($Date. ' + 4 days'));
+
+	}
+
 	public function insertTransaksi()
 	{
 		$file_gambar = $this->input->post('gambar');
@@ -63,7 +70,7 @@ class Transaksi extends CI_Controller {
 				'id_pegawai' => $id_pegawai,
 				'id_status' => $id_status,
 				'gambar' => $gambar,
-				'estimasi' => 4
+				'estimasi' => date('Y-m-d', strtotime($tanggal_masuk. ' + 4 days'))
 			);
 			$insert_transaksi = $this->transaksi->insert($arr_transaksi);
 
