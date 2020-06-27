@@ -11,7 +11,9 @@
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>Nama</th>
+										<th>Nama Tukang</th>
+										<th>Tanggal</th>
+										<th>Nama Bahan</th>
 										<th>Jumlah</th>
 										<th>Satuan</th>
 										<th>Harga Beli</th>
@@ -30,6 +32,8 @@
 										?>
 										<tr>
 											<td><?php echo $no?></td>
+											<td><?php echo $value->nama_tukang?></td>
+											<td><?php echo $value->tanggal?></td>
 											<td><?php echo $value->nama_inv?></td>
 											<td><?php echo $value->jumlah ?></td>
 											<td><?php echo $value->satuan ?></td>
