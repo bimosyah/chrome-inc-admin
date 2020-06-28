@@ -19,8 +19,10 @@ class Inventory extends CI_Controller {
 		$satuan = $this->input->post('satuan');
 		$harga_beli = $this->input->post('harga_beli');
 		$keterangan = $this->input->post('keterangan');
+		$nama_tukang = $this->input->post('nama_tukang');
 
 		$object = array(
+			'nama_tukang' => $nama_tukang,
 			'nama_inv' => $nama_inv,
 			'jumlah' => $jumlah,
 			'satuan' => $satuan,
