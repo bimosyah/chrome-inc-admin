@@ -109,9 +109,6 @@
 									<button type="submit" class="btn btn-primary">
 										Login
 									</button>
-									<a href="#" class="btn btn-link">
-										Forgot Your Password?
-									</a>
 								</div>
 							</div>
 						</form>
