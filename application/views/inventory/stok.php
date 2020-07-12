@@ -19,7 +19,7 @@
 							<div class="form-group row">
 								<label for="nama_inv" class="col-sm-2 col-form-label">Tambah Stok</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="stok" id="stok" >
+									<input type="number" class="form-control" name="stok" id="stok" >
 								</div>
 							</div>
 
