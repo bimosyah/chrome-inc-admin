@@ -11,14 +11,11 @@
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>Nama Tukang</th>
-										<th>Tanggal</th>
 										<th>Nama Bahan</th>
-										<th>Jumlah</th>
 										<th>Satuan</th>
 										<th>Harga Beli</th>
 										<th>Keterangan</th>
-										<th>Status</th>
+										<th>Stok</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -27,23 +24,19 @@
 									$no = 1;
 									foreach ($inventory as $value): ?>
 										<?php 
-										$status = ($value->status == 0 ? "Menunggu" : "Selesai");
-										$color = ($value->status == 0 ? "#E30029" : "#0ACF83");
+										$color = ($value->stok == 0 ? "style=background-color:#E30029" : "");
 										?>
 										<tr>
 											<td><?php echo $no?></td>
-											<td><?php echo $value->nama_tukang?></td>
-											<td><?php echo $value->tanggal?></td>
 											<td><?php echo $value->nama_inv?></td>
-											<td><?php echo $value->jumlah ?></td>
 											<td><?php echo $value->satuan ?></td>
 											<td><?php echo $value->harga_beli ?></td>
 											<td><?php echo $value->keterangan ?></td>
-											<td style="background: <?php echo $color ?>"><?php echo $status ?></td>
+											<td <?php echo $color ?>> <?php echo $value->stok ?> </td>
 											<td>
 												<a href="<?php echo base_url("inventory/edit/{$value->id_inventory}") ?>" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</a>
 												<a href="<?php echo base_url("inventory/delete/{$value->id_inventory}") ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</a>
-												<a href="<?php echo base_url("inventory/update-status/{$value->id_inventory}") ?>" class="btn btn-sm btn-primary"></i> Ubah Status</a>
+												<a href="<?php echo base_url("inventory/stok/{$value->id_inventory}") ?>" class="btn btn-sm btn-primary"></i> Ubah Stok</a>
 											</td>
 										</tr>
 										<?php

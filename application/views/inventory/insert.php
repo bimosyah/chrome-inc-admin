@@ -16,13 +16,6 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="jumlah" class="col-sm-2 col-form-label">Jumlah</label>
-								<div class="col-sm-10">
-									<input type="number" class="form-control" name="jumlah" id="jumlah" 
-									value="<?php echo (isset($inventory[0]->jumlah) ? $inventory[0]->jumlah : "") ?>">
-								</div>
-							</div>
-							<div class="form-group row">
 								<label for="satuan" class="col-sm-2 col-form-label">Satuan</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" name="satuan" id="satuan" 

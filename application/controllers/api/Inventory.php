@@ -9,47 +9,23 @@ class Inventory extends CI_Controller {
 		$this->load->model('M_inventory', 'inventory');
 	}
 
-	public function insertInventory()
+	public function updateStokInventory()
 	{
 
 		$result = array();
 
-		$nama_inv = $this->input->post('nama_inv');
-		$jumlah = $this->input->post('jumlah');
-		$satuan = $this->input->post('satuan');
-		$harga_beli = $this->input->post('harga_beli');
-		$keterangan = $this->input->post('keterangan');
-		$nama_tukang = $this->input->post('nama_tukang');
+		$id_inventory = $this->input->post("id_inventory");
+		$stok_digunakan = $this->input->post('stok_digunakan');
+
+		$inventory = $this->inventory->get($id_inventory);
 
 		$object = array(
-			'nama_tukang' => $nama_tukang,
-			'nama_inv' => $nama_inv,
-			'jumlah' => $jumlah,
-			'satuan' => $satuan,
-			'harga_beli' => $harga_beli,
-			'keterangan' => $keterangan
+			'stok' =>  $inventory[0]->stok - $stok_digunakan
 		);
 
-		$query = $this->inventory->insert($object);
+		$query = $this->inventory->update($id_inventory,$object);
 
-		if ($query) {	
-
-			require_once(APPPATH.'views/vendor/autoload.php');
-			$options = array(
-				'cluster' => 'ap1',
-				'useTLS' => true
-			);
-			$pusher = new Pusher\Pusher(
-				'fbe5e22f9f78edda72c3',
-				'f8cc57c1d3dbcfc9525f',
-				'1014149',
-				$options
-			);
-
-			$data['message'] = 'sukses';
-			$data['from'] = 'inventory';
-			$pusher->trigger('my-channel', 'my-event', $data);
-			
+		if ($query) {				
 			$result = array(
 				'status' => 1,
 				'message' => "sukses"
@@ -61,7 +37,32 @@ class Inventory extends CI_Controller {
 			);
 		}
 		echo json_encode($result);
+	}
 
+	public function reqStokInventory()
+	{
+		require_once(APPPATH.'views/vendor/autoload.php');
+		$options = array(
+			'cluster' => 'ap1',
+			'useTLS' => true
+		);
+		$pusher = new Pusher\Pusher(
+			'fbe5e22f9f78edda72c3',
+			'f8cc57c1d3dbcfc9525f',
+			'1014149',
+			$options
+		);
+
+		$data['message'] = 'sukses';
+		$data['from'] = 'inventory';
+		$pusher->trigger('my-channel', 'my-event', $data);
+
+		$result = array(
+			'status' => 1,
+			'message' => "sukses"
+		);
+
+		echo json_encode($result);
 	}
 
 	public function daftartInventory()

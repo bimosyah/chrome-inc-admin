@@ -28,14 +28,12 @@ class C_inventory extends CI_Controller {
 	public function save()
 	{
 		$nama_inv = $this->input->post('nama_inv');
-		$jumlah = $this->input->post('jumlah');
 		$satuan = $this->input->post('satuan');
 		$harga_beli = $this->input->post('harga_beli');
 		$keterangan = $this->input->post('keterangan');
 
 		$object = array(
 			'nama_inv' => $nama_inv,
-			'jumlah' => $jumlah,
 			'satuan' => $satuan,
 			'harga_beli' => $harga_beli,
 			'keterangan' => $keterangan
@@ -80,11 +78,18 @@ class C_inventory extends CI_Controller {
 		}
 	}
 
-	public function updateStatus($id)
+	public function tambahStok($id)
 	{
-		
+		$data['inventory'] = $this->inventory->get($id);	
+		$this->load->view('inventory/stok',$data);
+	}
+
+	public function updateStok($id)
+	{
+		$inventory = $this->inventory->get($id);
+
 		$object = array(
-			'status' => 1
+			'stok' => $this->input->post('stok') + $inventory[0]->stok
 		);
 
 

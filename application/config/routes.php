@@ -87,7 +87,8 @@ $route['inventory/save'] = 'C_inventory/save';
 $route['inventory/delete/(:any)'] = 'C_inventory/delete/$1';
 $route['inventory/edit/(:any)'] = 'C_inventory/edit/$1';
 $route['inventory/update/(:any)'] = 'C_inventory/update/$1';
-$route['inventory/update-status/(:any)'] = 'C_inventory/updateStatus/$1';
+$route['inventory/stok/(:any)'] = 'C_inventory/tambahStok/$1';
+$route['inventory/update-stok/(:any)'] = 'C_inventory/updateStok/$1';
 
 
 $route['transaksi'] = 'C_transaksi';
