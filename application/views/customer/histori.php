@@ -13,7 +13,7 @@
 										<th>#</th>
 										<th>Tanggal Masuk</th>
 										<th>Tanggal Keluar</th>
-										<th>Status</th>
+										<!-- <th>Status</th> -->
 										<th>Detail transaksi</th>
 									</tr>
 								</thead>
@@ -39,7 +39,6 @@
 											<td><?php echo $no?></td>
 											<td><?php echo $value->tanggal_masuk?></td>
 											<td><?php echo $value->tanggal_keluar ?></td>
-											<td style="background: <?php echo $color ?>"><?php echo $status ?></td>
 											<td>
 												<a href="<?php echo base_url("transaksi/detail/".$value->id_transaksi) ?>" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Detail</a>
 											</td>
